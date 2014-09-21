@@ -1,0 +1,47 @@
+{
+  "_meta": {
+    "sources": [
+      "../common/models",
+      "./models"
+    ]
+  },
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Server": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "Wallet": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "Currency": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "Account": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "Transaction": {
+    "dataSource": "localMYSQL",
+    "public": true
+  }
+}

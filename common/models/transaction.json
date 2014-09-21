@@ -1,0 +1,29 @@
+{
+  "name": "Transaction",
+  "base": "PersistedModel",
+  "properties": {
+    "amount": {
+      "type": "number",
+      "required": true
+    },
+    "sourceAccount": {
+      "type": "Account",
+      "required": true
+    },
+    "destination": {
+      "type": "string"
+    },
+    "destinationAccount": {
+      "type": "Account",
+      "required": true
+    },
+    "creationDate": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

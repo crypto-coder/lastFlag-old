@@ -1,0 +1,22 @@
+{
+  "name": "Server",
+  "base": "PersistedModel",
+  "properties": {
+    "otServerID": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "genesisNymID": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

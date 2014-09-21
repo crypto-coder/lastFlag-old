@@ -1,0 +1,22 @@
+{
+  "name": "Currency",
+  "base": "PersistedModel",
+  "properties": {
+    "otAssetID": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "totalCreated": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

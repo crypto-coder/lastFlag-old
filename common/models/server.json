@@ -16,7 +16,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "accounts": {
+      "type": "hasMany",
+      "model": "Account",
+      "foreignKey": "serverID"
+    }
+  },
   "acls": [],
   "methods": []
 }

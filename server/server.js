@@ -1,12 +1,15 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+var path = require('path');
 
 var app = module.exports = loopback();
 
 // Set up the /favicon.ico
 app.use(loopback.favicon());
+app.use(loopback.logger(app.get('env') == 'development' ? 'dev' : 'default'));
 
 // request pre-processing middleware
+app.use(loopback.methodOverride());
 app.use(loopback.compress());
 
 // -- Add your pre-processing middleware here --
@@ -14,12 +17,19 @@ app.use(loopback.compress());
 // boot scripts mount components like REST API
 boot(app, __dirname);
 
+// FROM LB EXAMPLE -- LoopBack REST interface
+var apiPath = '/api';
+app.use(loopback.cookieParser('secret'));
+app.use(loopback.token({model: app.models.accessToken}));
+app.use(apiPath, loopback.rest());
+
+
 // -- Mount static files here--
 // All static middleware should be registered at the end, as all requests
 // passing the static middleware are hitting the file system
 // Example:
 //   var path = require('path');
-//   app.use(loopback.static(path.resolve(__dirname, '../client')));
+app.use(loopback.static(path.resolve(__dirname, '../client')));
 
 // Requests that get this far won't be handled
 // by any middleware. Convert them into a 404 error
@@ -28,7 +38,6 @@ app.use(loopback.urlNotFound());
 
 // The ultimate error handler.
 app.use(loopback.errorHandler());
-
 
 app.start = function() {
   // start the web server

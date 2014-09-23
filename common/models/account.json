@@ -24,7 +24,28 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "sendTransactions": {
+      "type": "hasMany",
+      "model": "Transaction",
+      "foreignKey": "sourceAccountID"
+    },
+    "receiveTransactions": {
+      "type": "hasMany",
+      "model": "Transaction",
+      "foreignKey": "destinationAccountID"
+    },
+    "transactions": {
+      "type": "hasMany",
+      "model": "Transaction",
+      "foreignKey": "destinationAccountID"
+    },
+    "currency": {
+      "type": "hasOne",
+      "model": "Currency",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": []
 }

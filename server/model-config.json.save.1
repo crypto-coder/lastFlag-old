@@ -1,0 +1,114 @@
+{
+  "_meta": {
+    "sources": [
+      "../common/models",
+      "./models"
+    ]
+  },
+  "email": {
+    "options": {
+      "base": "Email",
+      "acls": [
+        {
+          "accessType": "*",
+          "permission": "DENY",
+          "principalType": "ROLE",
+          "principalId": "$everyone"
+        }
+      ]
+    },
+    "dataSource": "mail",
+    "public": false
+  },
+
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+  "user": {
+    "options": {
+      "base": "User",
+      "relations": {        "accessTokens": {
+          "model": "accessToken",
+          "type": "hasMany",
+          "foreignKey": "userId"
+        },
+        "account": {
+          "model": "account",
+          "type": "belongsTo"
+        },
+        "transactions": {
+          "model": "transaction",
+          "type": "hasMany"
+        }
+      },
+      "acls": [
+        {
+          "accessType": "*",
+          "permission": "DENY",
+          "principalType": "ROLE",
+          "principalId": "$everyone"
+        }
+      ]
+    },
+    "dataSource": "db",
+    "public": true
+  },
+  "accessToken": {
+    "options": {
+      "base": "AccessToken",
+      "baseUrl": "access-tokens",
+      "acls": [
+        {
+          "accessType": "*",
+          "permission": "DENY",
+          "principalType": "ROLE",
+          "principalId": "$everyone"
+        },
+        {
+          "permission": "ALLOW",
+          "principalType": "ROLE",
+          "principalId": "$everyone",
+          "property": "create"
+        }
+      ]
+    },
+    "dataSource": "db",
+    "public": true
+  },
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Server": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "Wallet": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "Currency": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "Account": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "Transaction": {
+    "dataSource": "localMYSQL",
+    "public": true
+  }
+}

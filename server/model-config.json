@@ -6,22 +6,23 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "localMYSQL",
+    "public": true
   },
   "AccessToken": {
-    "dataSource": "db",
-    "public": false
+    "dataSource": "localMYSQL",
+    "public": true
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "localMYSQL",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "localMYSQL",
     "public": false
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "localMYSQL",
     "public": false
   },
   "Server": {

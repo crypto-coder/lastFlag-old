@@ -14,14 +14,17 @@ ds.automigrate(function () {
 });
 
 
-User.create({email:'test@user.com', password:'password', firstName:'Test', lastName:'User'}, createAccount);
 
-function createAccount(err, newUser){
-  Account.create({otNymID:'', otAccountID:'', name:'', balance:100, balanceDate:'09-17-2014'}, function(err, newAccount){
-    newUser.accountID = newAccount.id;
-    newUser.save(function(){});
-  });
-}
+
+//MOVE THIS TO A SCRIPT FOR CREATING TEST DATA
+//User.create({email:'test@user.com', password:'password', firstName:'Test', lastName:'User'}, createAccount);
+
+//function createAccount(err, newUser){
+//  Account.create({otNymID:'', otAccountID:'', name:'', balance:100, balanceDate:'09-17-2014'}, function(err, newAccount){
+//    newUser.accountID = newAccount.id;
+//    newUser.save(function(){});
+//  });
+//}
 
 
 

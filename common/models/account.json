@@ -21,6 +21,10 @@
     "balanceDate": {
       "type": "date",
       "required": true
+    },
+    "userID": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],

@@ -1,13 +1,15 @@
 {
-  "name": "User",
-  "base": "PersistedModel",
-  "properties": {
-    "accountID": {
-      "type": "number",
-      "required": "true"}
-  },
+  "name": "user",
+  "base": "User",
+  "properties": {},
   "validations": [],
-  "relations": {},
+  "relations": {
+      "accounts": {
+          "type": "hasMany",
+          "model": "Account",
+          "foreignKey": "userID"
+      }
+  },
   "acls": [],
   "methods": []
 }

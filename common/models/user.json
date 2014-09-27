@@ -1,0 +1,13 @@
+{
+  "name": "User",
+  "base": "PersistedModel",
+  "properties": {
+    "accountID": {
+      "type": "number",
+      "required": "true"}
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

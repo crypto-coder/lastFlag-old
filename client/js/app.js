@@ -1,63 +1,68 @@
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array or 'requires'
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngRoute', 'ngAnimate', 'lbServices', 'starter.services', 'starter.controllers'])
+'use strict';
 
-.config(function ($compileProvider){
-  // Needed for routing to work
-  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
-})
 
-.config(function($routeProvider, $locationProvider, $httpProvider) {
+// Declare app level module which depends on filters, and services
+angular.module('lastFlagApp', [
+  'ionic',
+  'lastFlagApp.filters',
+  'lastFlagApp.directives',
+  'lastFlagApp.controllers',
+  'lastFlagApp.services',
+  'ui.router',
+  'lbServices'
+]).
+config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider){
+    $stateProvider
+        .state('home', { url: '/', templateUrl: 'partials/home.html', controller: HomeController})
+        .state('login', { url: '/login', templateUrl: 'partials/login.html', controller: LoginController })
+        .state('register', { url: '/register', templateUrl: 'partials/register.html', controller: RegistrationController });
 
-  // Set up the initial routes that our app will respond to.
-  // These are then tied up to our nav router which animates and
-  // updates a navigation bar
-  $routeProvider.when('/home', {
-    templateUrl: 'templates/app.html',
-    controller: 'AppCtrl'
-  });
+    $urlRouterProvider.otherwise('/');
 
-  // if the url matches something like /pet/2 then this route
-  // will fire off the PetCtrl controller (controllers.js)
-  $routeProvider.when('/register', {
-    templateUrl: 'templates/register.html',
-    controller: 'RegisterCtrl'
-  });
 
-  $routeProvider.when('/login', {
-    templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl'
-  });
 
-  // if none of the above routes are met, use this fallback
-  // which executes the 'AppCtrl' controller (controllers.js)
-  $routeProvider.otherwise({
-    redirectTo: '/home'
-  });
 
-  // Intercept 401 responses and redirect to login screen
-  $httpProvider.interceptors.push(function($q, $location, AppAuth) {
-    return {
-      responseError: function(rejection) {
-        console.log('intercepted rejection of ', rejection.config.url, rejection.status);
-        if (rejection.status == 401) {
-          AppAuth.currentUser = null;
-          // save the current location so that login can redirect back
-          $location.nextAfterLogin = $location.path();
-          $location.path('/login');
+
+    /* Intercept http errors */
+    var interceptor = function ($rootScope, $q, $location) {
+        function success(response) {
+            return response;
         }
-        return $q.reject(rejection);
-      }
+        function error(response) {
+            var status = response.status;
+            var config = response.config;
+            var method = config.method;
+            var url = config.url;
+            if (status == 401) {
+                $location.path( "/login" );
+            } else {
+                $rootScope.error = method + " on " + url + " failed with status " + status;
+            }
+            return $q.reject(response);
+        }
+        return function (promise) {
+            return promise.then(success, error);
+        };
     };
-  });
-})
+    $httpProvider.responseInterceptors.push(interceptor);
+    $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
 
-.run(function($rootScope, $location, AppAuth) {
-  $rootScope.$on("$routeChangeStart", function(event, next, current) {
-    console.log('AppAuth.currentUser', AppAuth.currentUser);
-    console.log('$location.path()', $location.path());
-  });
-});
 
+}])
+
+.run(['$rootScope', '$state', '$stateParams', function($rootScope, $state, $stateParams){
+        $rootScope.$state = $state;
+        $rootScope.$stateParams = $stateParams;
+    }]);
+
+
+
+
+/*
+config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/', {templateUrl: 'partials/home.html', controller: 'HomeController'});
+  $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginController'});
+  $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: 'RegistrationController'});
+  $routeProvider.otherwise({redirectTo: '/'});
+}]);
+*/

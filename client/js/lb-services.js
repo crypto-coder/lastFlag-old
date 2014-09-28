@@ -16,12 +16,12 @@ var module = angular.module("lbServices", ['ngResource']);
 
 /**
  * @ngdoc object
- * @name lbServices.User
+ * @name lbServices.LastFlagUser
  * @object
  *
  * @description
  *
- * A $resource object for interacting with the `User` model.
+ * A $resource object for interacting with the `LastFlagUser` model.
  *
  * ## Example
  *
@@ -31,17 +31,17 @@ var module = angular.module("lbServices", ['ngResource']);
  *
  */
 module.factory(
-  "User",
+  "LastFlagUser",
   ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
     var R = Resource(
-      urlBase + "/users/:id",
+      urlBase + "/lastFlagUsers/:id",
       { 'id': '@id' },
       {
 
         /**
          * @ngdoc method
-         * @name lbServices.User#login
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#login
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -78,7 +78,7 @@ module.factory(
          *
          */
         "login": {
-          url: urlBase + "/users/login",
+          url: urlBase + "/lastFlagUsers/login",
           method: "POST",
           params: {
             include: "user"
@@ -96,8 +96,8 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.User#logout
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#logout
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -125,7 +125,7 @@ module.factory(
          * This method returns no data.
          */
         "logout": {
-          url: urlBase + "/users/logout",
+          url: urlBase + "/lastFlagUsers/logout",
           method: "POST",
           interceptor: {
             response: function(response) {
@@ -138,8 +138,8 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.User#confirm
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#confirm
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -166,14 +166,14 @@ module.factory(
          * This method returns no data.
          */
         "confirm": {
-          url: urlBase + "/users/confirm",
+          url: urlBase + "/lastFlagUsers/confirm",
           method: "GET",
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.User#resetPassword
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#resetPassword
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -201,100 +201,100 @@ module.factory(
          * This method returns no data.
          */
         "resetPassword": {
-          url: urlBase + "/users/reset",
+          url: urlBase + "/lastFlagUsers/reset",
           method: "POST",
         },
 
-        // INTERNAL. Use User.accessTokens.findById() instead.
+        // INTERNAL. Use LastFlagUser.accessTokens.findById() instead.
         "prototype$__findById__accessTokens": {
-          url: urlBase + "/users/:id/accessTokens/:fk",
+          url: urlBase + "/lastFlagUsers/:id/accessTokens/:fk",
           method: "GET",
         },
 
-        // INTERNAL. Use User.accessTokens.destroyById() instead.
+        // INTERNAL. Use LastFlagUser.accessTokens.destroyById() instead.
         "prototype$__destroyById__accessTokens": {
-          url: urlBase + "/users/:id/accessTokens/:fk",
+          url: urlBase + "/lastFlagUsers/:id/accessTokens/:fk",
           method: "DELETE",
         },
 
-        // INTERNAL. Use User.accessTokens.updateById() instead.
+        // INTERNAL. Use LastFlagUser.accessTokens.updateById() instead.
         "prototype$__updateById__accessTokens": {
-          url: urlBase + "/users/:id/accessTokens/:fk",
+          url: urlBase + "/lastFlagUsers/:id/accessTokens/:fk",
           method: "PUT",
         },
 
-        // INTERNAL. Use User.accounts.findById() instead.
+        // INTERNAL. Use LastFlagUser.accounts.findById() instead.
         "prototype$__findById__accounts": {
-          url: urlBase + "/users/:id/accounts/:fk",
+          url: urlBase + "/lastFlagUsers/:id/accounts/:fk",
           method: "GET",
         },
 
-        // INTERNAL. Use User.accounts.destroyById() instead.
+        // INTERNAL. Use LastFlagUser.accounts.destroyById() instead.
         "prototype$__destroyById__accounts": {
-          url: urlBase + "/users/:id/accounts/:fk",
+          url: urlBase + "/lastFlagUsers/:id/accounts/:fk",
           method: "DELETE",
         },
 
-        // INTERNAL. Use User.accounts.updateById() instead.
+        // INTERNAL. Use LastFlagUser.accounts.updateById() instead.
         "prototype$__updateById__accounts": {
-          url: urlBase + "/users/:id/accounts/:fk",
+          url: urlBase + "/lastFlagUsers/:id/accounts/:fk",
           method: "PUT",
         },
 
-        // INTERNAL. Use User.accessTokens() instead.
+        // INTERNAL. Use LastFlagUser.accessTokens() instead.
         "prototype$__get__accessTokens": {
-          url: urlBase + "/users/:id/accessTokens",
+          url: urlBase + "/lastFlagUsers/:id/accessTokens",
           method: "GET",
           isArray: true,
         },
 
-        // INTERNAL. Use User.accessTokens.create() instead.
+        // INTERNAL. Use LastFlagUser.accessTokens.create() instead.
         "prototype$__create__accessTokens": {
-          url: urlBase + "/users/:id/accessTokens",
+          url: urlBase + "/lastFlagUsers/:id/accessTokens",
           method: "POST",
         },
 
-        // INTERNAL. Use User.accessTokens.destroyAll() instead.
+        // INTERNAL. Use LastFlagUser.accessTokens.destroyAll() instead.
         "prototype$__delete__accessTokens": {
-          url: urlBase + "/users/:id/accessTokens",
+          url: urlBase + "/lastFlagUsers/:id/accessTokens",
           method: "DELETE",
         },
 
-        // INTERNAL. Use User.accessTokens.count() instead.
+        // INTERNAL. Use LastFlagUser.accessTokens.count() instead.
         "prototype$__count__accessTokens": {
-          url: urlBase + "/users/:id/accessTokens/count",
+          url: urlBase + "/lastFlagUsers/:id/accessTokens/count",
           method: "GET",
         },
 
-        // INTERNAL. Use User.accounts() instead.
+        // INTERNAL. Use LastFlagUser.accounts() instead.
         "prototype$__get__accounts": {
-          url: urlBase + "/users/:id/accounts",
+          url: urlBase + "/lastFlagUsers/:id/accounts",
           method: "GET",
           isArray: true,
         },
 
-        // INTERNAL. Use User.accounts.create() instead.
+        // INTERNAL. Use LastFlagUser.accounts.create() instead.
         "prototype$__create__accounts": {
-          url: urlBase + "/users/:id/accounts",
+          url: urlBase + "/lastFlagUsers/:id/accounts",
           method: "POST",
         },
 
-        // INTERNAL. Use User.accounts.destroyAll() instead.
+        // INTERNAL. Use LastFlagUser.accounts.destroyAll() instead.
         "prototype$__delete__accounts": {
-          url: urlBase + "/users/:id/accounts",
+          url: urlBase + "/lastFlagUsers/:id/accounts",
           method: "DELETE",
         },
 
-        // INTERNAL. Use User.accounts.count() instead.
+        // INTERNAL. Use LastFlagUser.accounts.count() instead.
         "prototype$__count__accounts": {
-          url: urlBase + "/users/:id/accounts/count",
+          url: urlBase + "/lastFlagUsers/:id/accounts/count",
           method: "GET",
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.User#create
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#create
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -321,18 +321,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `User` object.)
+         * This usually means the response is a `LastFlagUser` object.)
          * </em>
          */
         "create": {
-          url: urlBase + "/users",
+          url: urlBase + "/lastFlagUsers",
           method: "POST",
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.User#upsert
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#upsert
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -359,18 +359,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `User` object.)
+         * This usually means the response is a `LastFlagUser` object.)
          * </em>
          */
         "upsert": {
-          url: urlBase + "/users",
+          url: urlBase + "/lastFlagUsers",
           method: "PUT",
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.User#exists
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#exists
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -395,14 +395,14 @@ module.factory(
          *  - `exists` – `{boolean=}` - 
          */
         "exists": {
-          url: urlBase + "/users/:id/exists",
+          url: urlBase + "/lastFlagUsers/:id/exists",
           method: "GET",
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.User#findById
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#findById
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -424,18 +424,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `User` object.)
+         * This usually means the response is a `LastFlagUser` object.)
          * </em>
          */
         "findById": {
-          url: urlBase + "/users/:id",
+          url: urlBase + "/lastFlagUsers/:id",
           method: "GET",
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.User#find
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#find
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -457,19 +457,19 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `User` object.)
+         * This usually means the response is a `LastFlagUser` object.)
          * </em>
          */
         "find": {
-          url: urlBase + "/users",
+          url: urlBase + "/lastFlagUsers",
           method: "GET",
           isArray: true,
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.User#findOne
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#findOne
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -491,18 +491,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `User` object.)
+         * This usually means the response is a `LastFlagUser` object.)
          * </em>
          */
         "findOne": {
-          url: urlBase + "/users/findOne",
+          url: urlBase + "/lastFlagUsers/findOne",
           method: "GET",
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.User#updateAll
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#updateAll
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -529,14 +529,14 @@ module.factory(
          * This method returns no data.
          */
         "updateAll": {
-          url: urlBase + "/users/update",
+          url: urlBase + "/lastFlagUsers/update",
           method: "POST",
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.User#deleteById
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#deleteById
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -559,14 +559,14 @@ module.factory(
          * This method returns no data.
          */
         "deleteById": {
-          url: urlBase + "/users/:id",
+          url: urlBase + "/lastFlagUsers/:id",
           method: "DELETE",
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.User#count
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#count
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -591,14 +591,14 @@ module.factory(
          *  - `count` – `{number=}` - 
          */
         "count": {
-          url: urlBase + "/users/count",
+          url: urlBase + "/lastFlagUsers/count",
           method: "GET",
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.User#prototype$updateAttributes
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#prototype$updateAttributes
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -624,18 +624,18 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `User` object.)
+         * This usually means the response is a `LastFlagUser` object.)
          * </em>
          */
         "prototype$updateAttributes": {
-          url: urlBase + "/users/:id",
+          url: urlBase + "/lastFlagUsers/:id",
           method: "PUT",
         },
 
         /**
          * @ngdoc method
-         * @name lbServices.User#getCurrent
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#getCurrent
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -653,7 +653,7 @@ module.factory(
          *   from the server.
          */
         "getCurrent": {
-           url: urlBase + "/" + "/users" + "/:id",
+           url: urlBase + "/" + "/lastFlagUsers" + "/:id",
            method: "GET",
            params: {
              id: function() {
@@ -677,8 +677,8 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.User#updateOrCreate
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#updateOrCreate
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -705,15 +705,15 @@ module.factory(
          *
          * <em>
          * (The remote method definition does not provide any description.
-         * This usually means the response is a `User` object.)
+         * This usually means the response is a `LastFlagUser` object.)
          * </em>
          */
         R["updateOrCreate"] = R["upsert"];
 
         /**
          * @ngdoc method
-         * @name lbServices.User#update
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#update
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -743,8 +743,8 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.User#destroyById
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#destroyById
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -770,8 +770,8 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.User#removeById
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#removeById
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
@@ -797,18 +797,18 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.User#getCachedCurrent
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#getCachedCurrent
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
          * Get data of the currently logged user that was returned by the last
-         * call to {@link lbServices.User#login} or
-         * {@link lbServices.User#getCurrent}. Return null when there
+         * call to {@link lbServices.LastFlagUser#login} or
+         * {@link lbServices.LastFlagUser#getCurrent}. Return null when there
          * is no user logged in or the data of the current user were not fetched
          * yet.
          *
-         * @return {Object} A User instance.
+         * @return {Object} A LastFlagUser instance.
          */
         R.getCachedCurrent = function() {
           var data = LoopBackAuth.currentUserData;
@@ -817,8 +817,8 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.User#isAuthenticated
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#isAuthenticated
+         * @methodOf lbServices.LastFlagUser
          *
          * @return {boolean} True if the current user is authenticated (logged in).
          */
@@ -828,8 +828,8 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.User#getCurrentId
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#getCurrentId
+         * @methodOf lbServices.LastFlagUser
          *
          * @return {Object} Id of the currently logged-in user or null.
          */
@@ -839,26 +839,26 @@ module.factory(
 
     /**
      * @ngdoc object
-     * @name lbServices.User.accessTokens
+     * @name lbServices.LastFlagUser.accessTokens
      * @object
      * @description
      *
-     * The object `User.accessTokens` groups methods
-     * manipulating `AccessToken` instances related to `User`.
+     * The object `LastFlagUser.accessTokens` groups methods
+     * manipulating `AccessToken` instances related to `LastFlagUser`.
      *
-     * Use {@link lbServices.User#accessTokens} to query
+     * Use {@link lbServices.LastFlagUser#accessTokens} to query
      * all related instances.
      */
 
 
         /**
          * @ngdoc method
-         * @name lbServices.User#accessTokens
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#accessTokens
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
-         * Queries accessTokens of user.
+         * Queries accessTokens of lastFlagUser.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -883,18 +883,18 @@ module.factory(
          */
         R.accessTokens = function() {
           var TargetResource = $injector.get("AccessToken");
-          var action = TargetResource["::get::user::accessTokens"];
+          var action = TargetResource["::get::lastFlagUser::accessTokens"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.User.accessTokens#count
-         * @methodOf lbServices.User.accessTokens
+         * @name lbServices.LastFlagUser.accessTokens#count
+         * @methodOf lbServices.LastFlagUser.accessTokens
          *
          * @description
          *
-         * Counts accessTokens of user.
+         * Counts accessTokens of lastFlagUser.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -918,14 +918,14 @@ module.factory(
          */
         R.accessTokens.count = function() {
           var TargetResource = $injector.get("AccessToken");
-          var action = TargetResource["::count::user::accessTokens"];
+          var action = TargetResource["::count::lastFlagUser::accessTokens"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.User.accessTokens#create
-         * @methodOf lbServices.User.accessTokens
+         * @name lbServices.LastFlagUser.accessTokens#create
+         * @methodOf lbServices.LastFlagUser.accessTokens
          *
          * @description
          *
@@ -956,14 +956,14 @@ module.factory(
          */
         R.accessTokens.create = function() {
           var TargetResource = $injector.get("AccessToken");
-          var action = TargetResource["::create::user::accessTokens"];
+          var action = TargetResource["::create::lastFlagUser::accessTokens"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.User.accessTokens#destroyAll
-         * @methodOf lbServices.User.accessTokens
+         * @name lbServices.LastFlagUser.accessTokens#destroyAll
+         * @methodOf lbServices.LastFlagUser.accessTokens
          *
          * @description
          *
@@ -987,14 +987,14 @@ module.factory(
          */
         R.accessTokens.destroyAll = function() {
           var TargetResource = $injector.get("AccessToken");
-          var action = TargetResource["::delete::user::accessTokens"];
+          var action = TargetResource["::delete::lastFlagUser::accessTokens"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.User.accessTokens#destroyById
-         * @methodOf lbServices.User.accessTokens
+         * @name lbServices.LastFlagUser.accessTokens#destroyById
+         * @methodOf lbServices.LastFlagUser.accessTokens
          *
          * @description
          *
@@ -1022,14 +1022,14 @@ module.factory(
          */
         R.accessTokens.destroyById = function() {
           var TargetResource = $injector.get("AccessToken");
-          var action = TargetResource["::destroyById::user::accessTokens"];
+          var action = TargetResource["::destroyById::lastFlagUser::accessTokens"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.User.accessTokens#findById
-         * @methodOf lbServices.User.accessTokens
+         * @name lbServices.LastFlagUser.accessTokens#findById
+         * @methodOf lbServices.LastFlagUser.accessTokens
          *
          * @description
          *
@@ -1058,14 +1058,14 @@ module.factory(
          */
         R.accessTokens.findById = function() {
           var TargetResource = $injector.get("AccessToken");
-          var action = TargetResource["::findById::user::accessTokens"];
+          var action = TargetResource["::findById::lastFlagUser::accessTokens"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.User.accessTokens#updateById
-         * @methodOf lbServices.User.accessTokens
+         * @name lbServices.LastFlagUser.accessTokens#updateById
+         * @methodOf lbServices.LastFlagUser.accessTokens
          *
          * @description
          *
@@ -1098,31 +1098,31 @@ module.factory(
          */
         R.accessTokens.updateById = function() {
           var TargetResource = $injector.get("AccessToken");
-          var action = TargetResource["::updateById::user::accessTokens"];
+          var action = TargetResource["::updateById::lastFlagUser::accessTokens"];
           return action.apply(R, arguments);
         };
     /**
      * @ngdoc object
-     * @name lbServices.User.accounts
+     * @name lbServices.LastFlagUser.accounts
      * @object
      * @description
      *
-     * The object `User.accounts` groups methods
-     * manipulating `Account` instances related to `User`.
+     * The object `LastFlagUser.accounts` groups methods
+     * manipulating `Account` instances related to `LastFlagUser`.
      *
-     * Use {@link lbServices.User#accounts} to query
+     * Use {@link lbServices.LastFlagUser#accounts} to query
      * all related instances.
      */
 
 
         /**
          * @ngdoc method
-         * @name lbServices.User#accounts
-         * @methodOf lbServices.User
+         * @name lbServices.LastFlagUser#accounts
+         * @methodOf lbServices.LastFlagUser
          *
          * @description
          *
-         * Queries accounts of user.
+         * Queries accounts of lastFlagUser.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -1147,18 +1147,18 @@ module.factory(
          */
         R.accounts = function() {
           var TargetResource = $injector.get("Account");
-          var action = TargetResource["::get::user::accounts"];
+          var action = TargetResource["::get::lastFlagUser::accounts"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.User.accounts#count
-         * @methodOf lbServices.User.accounts
+         * @name lbServices.LastFlagUser.accounts#count
+         * @methodOf lbServices.LastFlagUser.accounts
          *
          * @description
          *
-         * Counts accounts of user.
+         * Counts accounts of lastFlagUser.
          *
          * @param {Object=} parameters Request parameters.
          *
@@ -1182,14 +1182,14 @@ module.factory(
          */
         R.accounts.count = function() {
           var TargetResource = $injector.get("Account");
-          var action = TargetResource["::count::user::accounts"];
+          var action = TargetResource["::count::lastFlagUser::accounts"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.User.accounts#create
-         * @methodOf lbServices.User.accounts
+         * @name lbServices.LastFlagUser.accounts#create
+         * @methodOf lbServices.LastFlagUser.accounts
          *
          * @description
          *
@@ -1220,14 +1220,14 @@ module.factory(
          */
         R.accounts.create = function() {
           var TargetResource = $injector.get("Account");
-          var action = TargetResource["::create::user::accounts"];
+          var action = TargetResource["::create::lastFlagUser::accounts"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.User.accounts#destroyAll
-         * @methodOf lbServices.User.accounts
+         * @name lbServices.LastFlagUser.accounts#destroyAll
+         * @methodOf lbServices.LastFlagUser.accounts
          *
          * @description
          *
@@ -1251,14 +1251,14 @@ module.factory(
          */
         R.accounts.destroyAll = function() {
           var TargetResource = $injector.get("Account");
-          var action = TargetResource["::delete::user::accounts"];
+          var action = TargetResource["::delete::lastFlagUser::accounts"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.User.accounts#destroyById
-         * @methodOf lbServices.User.accounts
+         * @name lbServices.LastFlagUser.accounts#destroyById
+         * @methodOf lbServices.LastFlagUser.accounts
          *
          * @description
          *
@@ -1286,14 +1286,14 @@ module.factory(
          */
         R.accounts.destroyById = function() {
           var TargetResource = $injector.get("Account");
-          var action = TargetResource["::destroyById::user::accounts"];
+          var action = TargetResource["::destroyById::lastFlagUser::accounts"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.User.accounts#findById
-         * @methodOf lbServices.User.accounts
+         * @name lbServices.LastFlagUser.accounts#findById
+         * @methodOf lbServices.LastFlagUser.accounts
          *
          * @description
          *
@@ -1322,14 +1322,14 @@ module.factory(
          */
         R.accounts.findById = function() {
           var TargetResource = $injector.get("Account");
-          var action = TargetResource["::findById::user::accounts"];
+          var action = TargetResource["::findById::lastFlagUser::accounts"];
           return action.apply(R, arguments);
         };
 
         /**
          * @ngdoc method
-         * @name lbServices.User.accounts#updateById
-         * @methodOf lbServices.User.accounts
+         * @name lbServices.LastFlagUser.accounts#updateById
+         * @methodOf lbServices.LastFlagUser.accounts
          *
          * @description
          *
@@ -1362,7 +1362,7 @@ module.factory(
          */
         R.accounts.updateById = function() {
           var TargetResource = $injector.get("Account");
-          var action = TargetResource["::updateById::user::accounts"];
+          var action = TargetResource["::updateById::lastFlagUser::accounts"];
           return action.apply(R, arguments);
         };
 
@@ -1734,46 +1734,46 @@ module.factory(
           method: "PUT",
         },
 
-        // INTERNAL. Use User.accessTokens.findById() instead.
-        "::findById::user::accessTokens": {
-          url: urlBase + "/users/:id/accessTokens/:fk",
+        // INTERNAL. Use LastFlagUser.accessTokens.findById() instead.
+        "::findById::lastFlagUser::accessTokens": {
+          url: urlBase + "/lastFlagUsers/:id/accessTokens/:fk",
           method: "GET",
         },
 
-        // INTERNAL. Use User.accessTokens.destroyById() instead.
-        "::destroyById::user::accessTokens": {
-          url: urlBase + "/users/:id/accessTokens/:fk",
+        // INTERNAL. Use LastFlagUser.accessTokens.destroyById() instead.
+        "::destroyById::lastFlagUser::accessTokens": {
+          url: urlBase + "/lastFlagUsers/:id/accessTokens/:fk",
           method: "DELETE",
         },
 
-        // INTERNAL. Use User.accessTokens.updateById() instead.
-        "::updateById::user::accessTokens": {
-          url: urlBase + "/users/:id/accessTokens/:fk",
+        // INTERNAL. Use LastFlagUser.accessTokens.updateById() instead.
+        "::updateById::lastFlagUser::accessTokens": {
+          url: urlBase + "/lastFlagUsers/:id/accessTokens/:fk",
           method: "PUT",
         },
 
-        // INTERNAL. Use User.accessTokens() instead.
-        "::get::user::accessTokens": {
-          url: urlBase + "/users/:id/accessTokens",
+        // INTERNAL. Use LastFlagUser.accessTokens() instead.
+        "::get::lastFlagUser::accessTokens": {
+          url: urlBase + "/lastFlagUsers/:id/accessTokens",
           method: "GET",
           isArray: true,
         },
 
-        // INTERNAL. Use User.accessTokens.create() instead.
-        "::create::user::accessTokens": {
-          url: urlBase + "/users/:id/accessTokens",
+        // INTERNAL. Use LastFlagUser.accessTokens.create() instead.
+        "::create::lastFlagUser::accessTokens": {
+          url: urlBase + "/lastFlagUsers/:id/accessTokens",
           method: "POST",
         },
 
-        // INTERNAL. Use User.accessTokens.destroyAll() instead.
-        "::delete::user::accessTokens": {
-          url: urlBase + "/users/:id/accessTokens",
+        // INTERNAL. Use LastFlagUser.accessTokens.destroyAll() instead.
+        "::delete::lastFlagUser::accessTokens": {
+          url: urlBase + "/lastFlagUsers/:id/accessTokens",
           method: "DELETE",
         },
 
-        // INTERNAL. Use User.accessTokens.count() instead.
-        "::count::user::accessTokens": {
-          url: urlBase + "/users/:id/accessTokens/count",
+        // INTERNAL. Use LastFlagUser.accessTokens.count() instead.
+        "::count::lastFlagUser::accessTokens": {
+          url: urlBase + "/lastFlagUsers/:id/accessTokens/count",
           method: "GET",
         },
       }
@@ -4201,46 +4201,46 @@ module.factory(
           method: "PUT",
         },
 
-        // INTERNAL. Use User.accounts.findById() instead.
-        "::findById::user::accounts": {
-          url: urlBase + "/users/:id/accounts/:fk",
+        // INTERNAL. Use LastFlagUser.accounts.findById() instead.
+        "::findById::lastFlagUser::accounts": {
+          url: urlBase + "/lastFlagUsers/:id/accounts/:fk",
           method: "GET",
         },
 
-        // INTERNAL. Use User.accounts.destroyById() instead.
-        "::destroyById::user::accounts": {
-          url: urlBase + "/users/:id/accounts/:fk",
+        // INTERNAL. Use LastFlagUser.accounts.destroyById() instead.
+        "::destroyById::lastFlagUser::accounts": {
+          url: urlBase + "/lastFlagUsers/:id/accounts/:fk",
           method: "DELETE",
         },
 
-        // INTERNAL. Use User.accounts.updateById() instead.
-        "::updateById::user::accounts": {
-          url: urlBase + "/users/:id/accounts/:fk",
+        // INTERNAL. Use LastFlagUser.accounts.updateById() instead.
+        "::updateById::lastFlagUser::accounts": {
+          url: urlBase + "/lastFlagUsers/:id/accounts/:fk",
           method: "PUT",
         },
 
-        // INTERNAL. Use User.accounts() instead.
-        "::get::user::accounts": {
-          url: urlBase + "/users/:id/accounts",
+        // INTERNAL. Use LastFlagUser.accounts() instead.
+        "::get::lastFlagUser::accounts": {
+          url: urlBase + "/lastFlagUsers/:id/accounts",
           method: "GET",
           isArray: true,
         },
 
-        // INTERNAL. Use User.accounts.create() instead.
-        "::create::user::accounts": {
-          url: urlBase + "/users/:id/accounts",
+        // INTERNAL. Use LastFlagUser.accounts.create() instead.
+        "::create::lastFlagUser::accounts": {
+          url: urlBase + "/lastFlagUsers/:id/accounts",
           method: "POST",
         },
 
-        // INTERNAL. Use User.accounts.destroyAll() instead.
-        "::delete::user::accounts": {
-          url: urlBase + "/users/:id/accounts",
+        // INTERNAL. Use LastFlagUser.accounts.destroyAll() instead.
+        "::delete::lastFlagUser::accounts": {
+          url: urlBase + "/lastFlagUsers/:id/accounts",
           method: "DELETE",
         },
 
-        // INTERNAL. Use User.accounts.count() instead.
-        "::count::user::accounts": {
-          url: urlBase + "/users/:id/accounts/count",
+        // INTERNAL. Use LastFlagUser.accounts.count() instead.
+        "::count::lastFlagUser::accounts": {
+          url: urlBase + "/lastFlagUsers/:id/accounts/count",
           method: "GET",
         },
 

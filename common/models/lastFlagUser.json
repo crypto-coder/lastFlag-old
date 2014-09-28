@@ -1,5 +1,5 @@
 {
-  "name": "user",
+  "name": "lastFlagUser",
   "base": "User",
   "properties": {},
   "validations": [],

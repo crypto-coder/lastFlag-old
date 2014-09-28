@@ -1,52 +1,90 @@
-angular.module('starter.controllers', ['starter.services'])
+'use strict';
 
-.controller('AppCtrl', function($scope, User, $location, AppAuth) {
-    AppAuth.ensureHasCurrentUser(User);
-    $scope.currentUser = AppAuth.currentUser;
+/* Controllers */
+function HomeController($scope){}
 
-    $scope.options = [
-    {text: 'Logout', action: function() {
-      User.logout(function() {
-        $scope.currentUser =
-        AppAuth.currentUser = null;
-        $location.path('/');
-      });
-    }}
-  ];
+function LoginController($scope, LastFlagUser){
+    $scope.credentials = {};
 
-  $scope.toggleLeft = function() {
-    $scope.sideMenuController.toggleLeft();
-  };
-})
+    $scope.login = function(){
+            LastFlagUser.login($scope.credentials,
+                function(accessToken){
+                    console.log('Success');
+                    $scope.accessToken = accessToken.id;
+                    console.log(user.id);
+                    console.log(accessToken.userId);
+                },
+                function(err){
+                    console.log('Error');
+                    $scope.registerError = err;
+                    for(var i in err){console.log(i+' = '+err[i]);}
+                });
+    }
+}
 
-.controller('LoginCtrl', function($scope, $routeParams, User, $location, AppAuth) {
-  $scope.registration = {};
-  $scope.credentials = {
-    email: 'foo@bar.com',
-    password: '123456'
-  };
+function RegistrationController($scope, $state, LastFlagUser){
+    $scope.registration = {};
 
-  $scope.login = function() {
-    $scope.loginResult = User.login({include: 'user', rememberMe: true}, $scope.credentials,
-      function() {
-        var next = $location.nextAfterLogin || '/';
-        $location.nextAfterLogin = null;
-        AppAuth.currentUser = $scope.loginResult.user;
-        $location.path(next);
-      },
-      function(res) {
-        $scope.loginError = res.data.error;
-      }
-    );
-  }
-  $scope.register = function() {
-    $scope.user = User.save($scope.registration,
-      function() {
-        // success
-      },
-      function(res) {
-        $scope.registerError = res.data.error;
-      }
-    );
-  }
-});
+    $scope.register = function(){
+
+        LastFlagUser.create({username: $scope.registration.username, email: $scope.registration.email, password:$scope.registration.password},
+                                function(user){
+                                    console.log('SUCCESS - Created a new User - User ID = ' + user.id);
+                                    $scope.user = user;
+                                    //for(var i in user){console.log(i+' = '+user[i]);}
+
+                                    var credentials = {"username": $scope.registration.username,
+                                                        "password": $scope.registration.password,
+                                                        "ttl": "1209600000"};
+
+                                    LastFlagUser.login(credentials,
+                                        function(accessToken){
+                                            console.log('SUCCESS - Login - Access Token = ' + accessToken.id);
+                                            $scope.accessToken = accessToken.id;
+
+
+
+                                        },
+                                        function(err){
+                                            console.log('ERROR - Login Failure');
+                                            $scope.registerError = err;
+                                            for(var i in err){console.log(i+' = '+err[i]);}
+                                    });
+                                },
+                                function(err){
+                                    console.log('ERROR - User Creation Failure');
+                                    $scope.registerError = err.data.error;
+                                    for(var i in err.data.error){console.log(i+' = '+err.data.error[i]);}
+                                });
+
+    }
+
+
+    //var newUser = LastFlagUser.create({email: 'test@user.com', password: 'password'},
+    //    function(err, user){
+    //        console.log(err);
+    //        console.log(user.id);
+    //        console.log(user.username);
+    //    });
+    //newUser.$save(
+    //    function(){console.log('Success');},
+    //    function(err){console.log('Error='+err);}
+    //);
+
+
+
+
+
+
+
+}
+
+
+
+angular.module('lastFlagApp.controllers', [])
+  .controller('HomeController', ['$scope', HomeController])
+  .controller('LoginController', ['$scope', 'LastFlagUser', LoginController])
+  .controller('RegistrationController', ['$scope', '$state', 'LastFlagUser', RegistrationController])
+  .controller('SummaryController', ['$scope', function($scope) {
+
+  }]);

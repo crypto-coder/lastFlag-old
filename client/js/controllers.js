@@ -3,34 +3,47 @@
 /* Controllers */
 function HomeController($scope){}
 
-function LoginController($scope, LastFlagUser){
+function LoginController($scope, $state, LastFlagUser){
     $scope.credentials = {};
 
     $scope.login = function(){
             LastFlagUser.login($scope.credentials,
                 function(accessToken){
-                    console.log('Success');
+                    console.log('SUCCESS - Login - Access Token = ' + accessToken.id);
                     $scope.accessToken = accessToken.id;
-                    console.log(user.id);
-                    console.log(accessToken.userId);
+
+                    $state.go('summary');
                 },
                 function(err){
-                    console.log('Error');
-                    $scope.registerError = err;
-                    for(var i in err){console.log(i+' = '+err[i]);}
+                    console.log('ERROR - Login Failure');
+                    $scope.loginError = err.data.error;
+                    for(var i in err.data.error){console.log(i+' = '+err.data.error[i]);}
                 });
     }
 }
 
-function RegistrationController($scope, $state, LastFlagUser){
+function RegistrationController($scope, $state, AssetService, Currency, LastFlagUser){
     $scope.registration = {};
+    //$scope.assets = [{name:'test', id:1, issued:100}, {name:'test2', id:2, issued:1000}];
+
+    //TODO: This is silly.  No need to provide Currency type...
+    $scope.assets = AssetService.getCurrentAssetList(Currency);
+
 
     $scope.register = function(){
 
-        LastFlagUser.create({username: $scope.registration.username, email: $scope.registration.email, password:$scope.registration.password},
+        var registrationDetails = {username: $scope.registration.username,
+                              email: $scope.registration.username + '@test.com',
+                              password: $scope.registration.password};
+
+        LastFlagUser.create(registrationDetails,
                                 function(user){
                                     console.log('SUCCESS - Created a new User - User ID = ' + user.id);
                                     $scope.user = user;
+
+
+                                    //Create the Account using the requested currency
+
                                     //for(var i in user){console.log(i+' = '+user[i]);}
 
                                     var credentials = {"username": $scope.registration.username,
@@ -42,13 +55,12 @@ function RegistrationController($scope, $state, LastFlagUser){
                                             console.log('SUCCESS - Login - Access Token = ' + accessToken.id);
                                             $scope.accessToken = accessToken.id;
 
-
-
+                                            $state.go('summary');
                                         },
                                         function(err){
                                             console.log('ERROR - Login Failure');
-                                            $scope.registerError = err;
-                                            for(var i in err){console.log(i+' = '+err[i]);}
+                                            $scope.registerError = err.data.error;
+                                            for(var i in err.data.error){console.log(i+' = '+err.data.error[i]);}
                                     });
                                 },
                                 function(err){
@@ -70,21 +82,20 @@ function RegistrationController($scope, $state, LastFlagUser){
     //    function(){console.log('Success');},
     //    function(err){console.log('Error='+err);}
     //);
+}
 
 
-
-
-
-
+function SummaryController($scope, LastFlagUser, AppAuth){
+    AppAuth.ensureHasCurrentUser(LastFlagUser);
+    $scope.currentUser = AppAuth.currentUser;
 
 }
 
 
 
-angular.module('lastFlagApp.controllers', [])
-  .controller('HomeController', ['$scope', HomeController])
-  .controller('LoginController', ['$scope', 'LastFlagUser', LoginController])
-  .controller('RegistrationController', ['$scope', '$state', 'LastFlagUser', RegistrationController])
-  .controller('SummaryController', ['$scope', function($scope) {
 
-  }]);
+angular.module('lastFlagApp.controllers', ['lbServices', 'lastFlagApp.services'])
+  .controller('HomeController', ['$scope', HomeController])
+  .controller('LoginController', ['$scope', '$state', 'LastFlagUser', LoginController])
+  .controller('RegistrationController', ['$scope', '$state', 'AssetService', 'Currency', 'LastFlagUser', RegistrationController])
+  .controller('SummaryController', ['$scope', 'LastFlagUser', 'AppAuth', SummaryController]);

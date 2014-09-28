@@ -15,7 +15,8 @@ config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($state
     $stateProvider
         .state('home', { url: '/', templateUrl: 'partials/home.html', controller: HomeController})
         .state('login', { url: '/login', templateUrl: 'partials/login.html', controller: LoginController })
-        .state('register', { url: '/register', templateUrl: 'partials/register.html', controller: RegistrationController });
+        .state('register', { url: '/register', templateUrl: 'partials/register.html', controller: RegistrationController })
+        .state('summary', { url: '/summary', templateUrl: 'partials/summary.html', controller: SummaryController });
 
     $urlRouterProvider.otherwise('/');
 
@@ -50,9 +51,14 @@ config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($state
 
 }])
 
-.run(['$rootScope', '$state', '$stateParams', function($rootScope, $state, $stateParams){
+.run(['$rootScope', '$state', '$stateParams', 'AppAuth', function($rootScope, $state, $stateParams, AppAuth ){
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+
+        $rootScope.$on('$routeChangeStart', function(event, next, current){
+           console.log('AppAuth.currentUser', AppAuth.currentUser);
+           console.log('$location.path()', $location.path());
+        });
     }]);
 
 

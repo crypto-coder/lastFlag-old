@@ -12,6 +12,7 @@ angular.module('lastFlagApp', [
   'lbServices'
 ]).
 config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider){
+
     $stateProvider
         .state('home', { url: '/', templateUrl: 'partials/home.html', controller: HomeController})
         .state('login', { url: '/login', templateUrl: 'partials/login.html', controller: LoginController })
@@ -47,10 +48,11 @@ config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($state
     };
     $httpProvider.responseInterceptors.push(interceptor);
     $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 
 }])
-
 .run(['$rootScope', '$state', '$stateParams', 'AppAuth', function($rootScope, $state, $stateParams, AppAuth ){
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
@@ -59,8 +61,7 @@ config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($state
            console.log('AppAuth.currentUser', AppAuth.currentUser);
            console.log('$location.path()', $location.path());
         });
-    }]);
-
+}]);
 
 
 

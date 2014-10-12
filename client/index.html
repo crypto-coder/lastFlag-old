@@ -8,22 +8,17 @@
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="stylesheet" href="css/app.css">
-
 
     <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.css">
-    <script src="bower_components/ionic/release/js/ionic.bundle.js"></script>
-    <script src="bower_components/ionic/release/js/ionic-angular.js"></script>
+    <!-- script src="bower_components/ionic/release/js/ionic.bundle.js"></script>
+    <script src="bower_components/ionic/release/js/ionic-angular.js"></script -->
+    <script src="js/ionic.bundle.js"></script>
+    <script src="js/ionic-angular.js"></script>
 
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
-
-<!--
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
--->
 
     <script src="js/lb-services.js"></script>
 
@@ -33,39 +28,12 @@
     <script src="js/filters.js"></script>
     <script src="js/app.js"></script>
 
+    <link rel="stylesheet" href="css/app.css">
+
+
 </head>
 <body>
-    <ion-nav-bar></ion-nav-bar>
+    <ion-nav-bar class="bar-positive" align-title="center"></ion-nav-bar>
     <ion-nav-view animation="slide-left-right"></ion-nav-view>
-
-
-
-
-<hr>
-<pre>
-<!-- Here's some values to keep an eye on in the sample in order to understand $state and $stateParams -->
-$state = {{$state.current.name}}
-$stateParams = {{$stateParams}}
-$state full url = {{ $state.$current.url.source }}
-<!-- $state.$current is not a public api, we are using it to
-display the full url for learning purposes-->
-</pre>
-
-
-
-
-
-<!--
-    <header class="bar bar-header bar-positive">
-        <h1 class="title">LastFlag</h1>
-        <button class="button icon ion-log-in"></button>
-    </header>
-    <content has-header="true" scroll="true">
-        <ng-view></ng-view>
-    </content>
--->
-
-
-
 </body>
 </html>

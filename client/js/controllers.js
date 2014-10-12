@@ -3,14 +3,15 @@
 /* Controllers */
 function HomeController($scope){}
 
-function LoginController($scope, $state, LastFlagUser){
+function LoginController($scope, $state, LastFlagUser, AppAuth){
     $scope.credentials = {};
 
     $scope.login = function(){
             LastFlagUser.login($scope.credentials,
                 function(accessToken){
                     console.log('SUCCESS - Login - Access Token = ' + accessToken.id);
-                    $scope.accessToken = accessToken.id;
+                    AppAuth.accessToken = accessToken.id;
+                    AppAuth.ensureHasCurrentUser(LastFlagUser);
 
                     $state.go('summary');
                 },
@@ -22,11 +23,12 @@ function LoginController($scope, $state, LastFlagUser){
     }
 }
 
-function RegistrationController($scope, $state, AssetService, Currency, LastFlagUser){
+function RegistrationController($scope, $state, AppAuth, AssetService, Currency, LastFlagUser, Account){
     $scope.registration = {};
+    $scope.timeout = 1000 * 60 * 60 * 24; //24 hours
     //$scope.assets = [{name:'test', id:1, issued:100}, {name:'test2', id:2, issued:1000}];
 
-    //TODO: This is silly.  No need to provide Currency type...
+    //TODO: Refactor to not require a Currency parameter...
     $scope.assets = AssetService.getCurrentAssetList(Currency);
 
 
@@ -41,19 +43,14 @@ function RegistrationController($scope, $state, AssetService, Currency, LastFlag
                                     console.log('SUCCESS - Created a new User - User ID = ' + user.id);
                                     $scope.user = user;
 
-
-                                    //Create the Account using the requested currency
-
-                                    //for(var i in user){console.log(i+' = '+user[i]);}
-
                                     var credentials = {"username": $scope.registration.username,
                                                         "password": $scope.registration.password,
-                                                        "ttl": "1209600000"};
+                                                        "ttl": $scope.timeout};
 
                                     LastFlagUser.login(credentials,
                                         function(accessToken){
                                             console.log('SUCCESS - Login - Access Token = ' + accessToken.id);
-                                            $scope.accessToken = accessToken.id;
+                                            AppAuth.accessToken = accessToken.id;
 
                                             $state.go('summary');
                                         },
@@ -70,24 +67,45 @@ function RegistrationController($scope, $state, AssetService, Currency, LastFlag
                                 });
 
     }
-
-
-    //var newUser = LastFlagUser.create({email: 'test@user.com', password: 'password'},
-    //    function(err, user){
-    //        console.log(err);
-    //        console.log(user.id);
-    //        console.log(user.username);
-    //    });
-    //newUser.$save(
-    //    function(){console.log('Success');},
-    //    function(err){console.log('Error='+err);}
-    //);
 }
 
 
-function SummaryController($scope, LastFlagUser, AppAuth){
+function SummaryController($scope, $state, LastFlagUser, AppAuth, Account){
     AppAuth.ensureHasCurrentUser(LastFlagUser);
-    $scope.currentUser = AppAuth.currentUser;
+    $scope.hasAccessToken = (AppAuth.accessToken != null);
+
+
+    $scope.logout = function(){
+
+        LastFlagUser.logout(null,
+            function(err){
+                console.log('Logged out');
+            }
+        );
+        AppAuth.clearCredentials();
+
+        $state.go('home');
+    };
+/*
+    $scope.createdAssets = [{ 'name':'test coin', 'balance': '-100,000' },
+                            { 'name':'test coin2', 'balance': '-50,000' }];
+    $scope.receivedAssets = [{ 'name':'test coin', 'balance': '100,000' },
+                             { 'name':'test coin2', 'balance': '11,000' }];
+*/
+
+
+    //TODO: Need to use the actual account classifiers instead of using balances to determine account type
+
+    Account.find(
+        {where: {userID: AppAuth.currentUser.id}},
+        function(accounts){
+            $scope.receivedAssets = accounts;
+        },
+        function(err){
+            console.log('error occurred when retrieving accounts for the current user');
+            return;
+        });
+
 
 }
 
@@ -96,6 +114,6 @@ function SummaryController($scope, LastFlagUser, AppAuth){
 
 angular.module('lastFlagApp.controllers', ['lbServices', 'lastFlagApp.services'])
   .controller('HomeController', ['$scope', HomeController])
-  .controller('LoginController', ['$scope', '$state', 'LastFlagUser', LoginController])
+  .controller('LoginController', ['$scope', '$state', 'LastFlagUser', 'AppAuth', LoginController])
   .controller('RegistrationController', ['$scope', '$state', 'AssetService', 'Currency', 'LastFlagUser', RegistrationController])
-  .controller('SummaryController', ['$scope', 'LastFlagUser', 'AppAuth', SummaryController]);
+  .controller('SummaryController', ['$scope', '$state', 'LastFlagUser', 'AppAuth', 'Account', SummaryController]);

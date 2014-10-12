@@ -1930,49 +1930,6 @@ module.factory(
       { 'id': '@id' },
       {
 
-        // INTERNAL. Use Server.accounts.findById() instead.
-        "prototype$__findById__accounts": {
-          url: urlBase + "/Servers/:id/accounts/:fk",
-          method: "GET",
-        },
-
-        // INTERNAL. Use Server.accounts.destroyById() instead.
-        "prototype$__destroyById__accounts": {
-          url: urlBase + "/Servers/:id/accounts/:fk",
-          method: "DELETE",
-        },
-
-        // INTERNAL. Use Server.accounts.updateById() instead.
-        "prototype$__updateById__accounts": {
-          url: urlBase + "/Servers/:id/accounts/:fk",
-          method: "PUT",
-        },
-
-        // INTERNAL. Use Server.accounts() instead.
-        "prototype$__get__accounts": {
-          url: urlBase + "/Servers/:id/accounts",
-          method: "GET",
-          isArray: true,
-        },
-
-        // INTERNAL. Use Server.accounts.create() instead.
-        "prototype$__create__accounts": {
-          url: urlBase + "/Servers/:id/accounts",
-          method: "POST",
-        },
-
-        // INTERNAL. Use Server.accounts.destroyAll() instead.
-        "prototype$__delete__accounts": {
-          url: urlBase + "/Servers/:id/accounts",
-          method: "DELETE",
-        },
-
-        // INTERNAL. Use Server.accounts.count() instead.
-        "prototype$__count__accounts": {
-          url: urlBase + "/Servers/:id/accounts/count",
-          method: "GET",
-        },
-
         /**
          * @ngdoc method
          * @name lbServices.Server#create
@@ -2439,270 +2396,6 @@ module.factory(
         R["removeById"] = R["deleteById"];
 
 
-    /**
-     * @ngdoc object
-     * @name lbServices.Server.accounts
-     * @object
-     * @description
-     *
-     * The object `Server.accounts` groups methods
-     * manipulating `Account` instances related to `Server`.
-     *
-     * Use {@link lbServices.Server#accounts} to query
-     * all related instances.
-     */
-
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server#accounts
-         * @methodOf lbServices.Server
-         *
-         * @description
-         *
-         * Queries accounts of Server.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         *  - `filter` – `{object=}` - 
-         *
-         * @param {Function(Array.<Object>, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Array.<Object>} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.accounts = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::get::Server::accounts"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server.accounts#count
-         * @methodOf lbServices.Server.accounts
-         *
-         * @description
-         *
-         * Counts accounts of Server.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         *  - `where` – `{object=}` - Criteria to match model instances
-         *
-         * @param {Function(Object, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * Data properties:
-         *
-         *  - `count` – `{number=}` - 
-         */
-        R.accounts.count = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::count::Server::accounts"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server.accounts#create
-         * @methodOf lbServices.Server.accounts
-         *
-         * @description
-         *
-         * Creates a new instance in accounts of this model.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         * @param {Object} postData Request data.
-         *
-         * This method expects a subset of model properties as request parameters.
-         *
-         * @param {Function(Object, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.accounts.create = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::create::Server::accounts"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server.accounts#destroyAll
-         * @methodOf lbServices.Server.accounts
-         *
-         * @description
-         *
-         * Deletes all accounts of this model.
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         * @param {Function(Object, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * This method returns no data.
-         */
-        R.accounts.destroyAll = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::delete::Server::accounts"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server.accounts#destroyById
-         * @methodOf lbServices.Server.accounts
-         *
-         * @description
-         *
-         * Delete a related item by id for accounts
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         *  - `fk` – `{*}` - Foreign key for accounts
-         *
-         * @param {Function(Object, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * Data properties:
-         *
-         *  - `` – `{undefined=}` - 
-         */
-        R.accounts.destroyById = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::destroyById::Server::accounts"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server.accounts#findById
-         * @methodOf lbServices.Server.accounts
-         *
-         * @description
-         *
-         * Find a related item by id for accounts
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         *  - `fk` – `{*}` - Foreign key for accounts
-         *
-         * @param {Function(Object, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.accounts.findById = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::findById::Server::accounts"];
-          return action.apply(R, arguments);
-        };
-
-        /**
-         * @ngdoc method
-         * @name lbServices.Server.accounts#updateById
-         * @methodOf lbServices.Server.accounts
-         *
-         * @description
-         *
-         * Update a related item by id for accounts
-         *
-         * @param {Object=} parameters Request parameters.
-         *
-         *  - `id` – `{*}` - PersistedModel id
-         *
-         *  - `fk` – `{*}` - Foreign key for accounts
-         *
-         * @param {Object} postData Request data.
-         *
-         * This method expects a subset of model properties as request parameters.
-         *
-         * @param {Function(Object, Object)=} successCb
-         *   Success callback with two arguments: `value`, `responseHeaders`.
-         *
-         * @param {Function(Object)=} errorCb Error callback with one argument:
-         *   `httpResponse`.
-         *
-         * @return {Object} An empty reference that will be
-         *   populated with the actual data once the response is returned
-         *   from the server.
-         *
-         * <em>
-         * (The remote method definition does not provide any description.
-         * This usually means the response is a `Account` object.)
-         * </em>
-         */
-        R.accounts.updateById = function() {
-          var TargetResource = $injector.get("Account");
-          var action = TargetResource["::updateById::Server::accounts"];
-          return action.apply(R, arguments);
-        };
 
     return R;
   }]);
@@ -3225,6 +2918,49 @@ module.factory(
       { 'id': '@id' },
       {
 
+        // INTERNAL. Use Currency.accounts.findById() instead.
+        "prototype$__findById__accounts": {
+          url: urlBase + "/Currencies/:id/accounts/:fk",
+          method: "GET",
+        },
+
+        // INTERNAL. Use Currency.accounts.destroyById() instead.
+        "prototype$__destroyById__accounts": {
+          url: urlBase + "/Currencies/:id/accounts/:fk",
+          method: "DELETE",
+        },
+
+        // INTERNAL. Use Currency.accounts.updateById() instead.
+        "prototype$__updateById__accounts": {
+          url: urlBase + "/Currencies/:id/accounts/:fk",
+          method: "PUT",
+        },
+
+        // INTERNAL. Use Currency.accounts() instead.
+        "prototype$__get__accounts": {
+          url: urlBase + "/Currencies/:id/accounts",
+          method: "GET",
+          isArray: true,
+        },
+
+        // INTERNAL. Use Currency.accounts.create() instead.
+        "prototype$__create__accounts": {
+          url: urlBase + "/Currencies/:id/accounts",
+          method: "POST",
+        },
+
+        // INTERNAL. Use Currency.accounts.destroyAll() instead.
+        "prototype$__delete__accounts": {
+          url: urlBase + "/Currencies/:id/accounts",
+          method: "DELETE",
+        },
+
+        // INTERNAL. Use Currency.accounts.count() instead.
+        "prototype$__count__accounts": {
+          url: urlBase + "/Currencies/:id/accounts/count",
+          method: "GET",
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.Currency#create
@@ -3697,6 +3433,270 @@ module.factory(
         R["removeById"] = R["deleteById"];
 
 
+    /**
+     * @ngdoc object
+     * @name lbServices.Currency.accounts
+     * @object
+     * @description
+     *
+     * The object `Currency.accounts` groups methods
+     * manipulating `Account` instances related to `Currency`.
+     *
+     * Use {@link lbServices.Currency#accounts} to query
+     * all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Currency#accounts
+         * @methodOf lbServices.Currency
+         *
+         * @description
+         *
+         * Queries accounts of Currency.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {Function(Array.<Object>, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
+        R.accounts = function() {
+          var TargetResource = $injector.get("Account");
+          var action = TargetResource["::get::Currency::accounts"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Currency.accounts#count
+         * @methodOf lbServices.Currency.accounts
+         *
+         * @description
+         *
+         * Counts accounts of Currency.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.accounts.count = function() {
+          var TargetResource = $injector.get("Account");
+          var action = TargetResource["::count::Currency::accounts"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Currency.accounts#create
+         * @methodOf lbServices.Currency.accounts
+         *
+         * @description
+         *
+         * Creates a new instance in accounts of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
+        R.accounts.create = function() {
+          var TargetResource = $injector.get("Account");
+          var action = TargetResource["::create::Currency::accounts"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Currency.accounts#destroyAll
+         * @methodOf lbServices.Currency.accounts
+         *
+         * @description
+         *
+         * Deletes all accounts of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.accounts.destroyAll = function() {
+          var TargetResource = $injector.get("Account");
+          var action = TargetResource["::delete::Currency::accounts"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Currency.accounts#destroyById
+         * @methodOf lbServices.Currency.accounts
+         *
+         * @description
+         *
+         * Delete a related item by id for accounts
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for accounts
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `` – `{undefined=}` - 
+         */
+        R.accounts.destroyById = function() {
+          var TargetResource = $injector.get("Account");
+          var action = TargetResource["::destroyById::Currency::accounts"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Currency.accounts#findById
+         * @methodOf lbServices.Currency.accounts
+         *
+         * @description
+         *
+         * Find a related item by id for accounts
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for accounts
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
+        R.accounts.findById = function() {
+          var TargetResource = $injector.get("Account");
+          var action = TargetResource["::findById::Currency::accounts"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Currency.accounts#updateById
+         * @methodOf lbServices.Currency.accounts
+         *
+         * @description
+         *
+         * Update a related item by id for accounts
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for accounts
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
+        R.accounts.updateById = function() {
+          var TargetResource = $injector.get("Account");
+          var action = TargetResource["::updateById::Currency::accounts"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);
@@ -4244,46 +4244,46 @@ module.factory(
           method: "GET",
         },
 
-        // INTERNAL. Use Server.accounts.findById() instead.
-        "::findById::Server::accounts": {
-          url: urlBase + "/Servers/:id/accounts/:fk",
+        // INTERNAL. Use Currency.accounts.findById() instead.
+        "::findById::Currency::accounts": {
+          url: urlBase + "/Currencies/:id/accounts/:fk",
           method: "GET",
         },
 
-        // INTERNAL. Use Server.accounts.destroyById() instead.
-        "::destroyById::Server::accounts": {
-          url: urlBase + "/Servers/:id/accounts/:fk",
+        // INTERNAL. Use Currency.accounts.destroyById() instead.
+        "::destroyById::Currency::accounts": {
+          url: urlBase + "/Currencies/:id/accounts/:fk",
           method: "DELETE",
         },
 
-        // INTERNAL. Use Server.accounts.updateById() instead.
-        "::updateById::Server::accounts": {
-          url: urlBase + "/Servers/:id/accounts/:fk",
+        // INTERNAL. Use Currency.accounts.updateById() instead.
+        "::updateById::Currency::accounts": {
+          url: urlBase + "/Currencies/:id/accounts/:fk",
           method: "PUT",
         },
 
-        // INTERNAL. Use Server.accounts() instead.
-        "::get::Server::accounts": {
-          url: urlBase + "/Servers/:id/accounts",
+        // INTERNAL. Use Currency.accounts() instead.
+        "::get::Currency::accounts": {
+          url: urlBase + "/Currencies/:id/accounts",
           method: "GET",
           isArray: true,
         },
 
-        // INTERNAL. Use Server.accounts.create() instead.
-        "::create::Server::accounts": {
-          url: urlBase + "/Servers/:id/accounts",
+        // INTERNAL. Use Currency.accounts.create() instead.
+        "::create::Currency::accounts": {
+          url: urlBase + "/Currencies/:id/accounts",
           method: "POST",
         },
 
-        // INTERNAL. Use Server.accounts.destroyAll() instead.
-        "::delete::Server::accounts": {
-          url: urlBase + "/Servers/:id/accounts",
+        // INTERNAL. Use Currency.accounts.destroyAll() instead.
+        "::delete::Currency::accounts": {
+          url: urlBase + "/Currencies/:id/accounts",
           method: "DELETE",
         },
 
-        // INTERNAL. Use Server.accounts.count() instead.
-        "::count::Server::accounts": {
-          url: urlBase + "/Servers/:id/accounts/count",
+        // INTERNAL. Use Currency.accounts.count() instead.
+        "::count::Currency::accounts": {
+          url: urlBase + "/Currencies/:id/accounts/count",
           method: "GET",
         },
       }
@@ -4420,7 +4420,7 @@ module.factory(
          *
          * @description
          *
-         * Fetches hasOne relation currency
+         * Fetches belongsTo relation currency
          *
          * @param {Object=} parameters Request parameters.
          *

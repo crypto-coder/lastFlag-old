@@ -11,6 +11,14 @@ angular.module('lastFlagApp.services', ['lbServices'])
         return {
             currentUser: null,
 
+            //TODO: figure out how to do this properly
+            accessToken: null,
+
+
+            clearCredentials: function(){
+                this.currentUser = null;
+                this.accessToken = null;
+            },
 
             // Note: we can't make the User a dependency of AppAuth
             // because that would create a circular dependency

@@ -25,29 +25,38 @@
     "userID": {
       "type": "number",
       "required": true
+    },
+    "currencyID": {
+        "type": "number",
+        "required": true
     }
   },
   "validations": [],
   "relations": {
+    "currency": {
+      "type": "belongsTo",
+      "model": "Currency",
+      "foreignKey": "currencyID"
+    },
+    "user": {
+        "type": "belongsTo",
+        "model": "LastFlagUser",
+        "foreignKey": "userID"
+    },
     "sendTransactions": {
-      "type": "hasMany",
-      "model": "Transaction",
-      "foreignKey": "sourceAccountID"
+        "type": "hasMany",
+        "model": "Transaction",
+        "foreignKey": "sourceAccountID"
     },
     "receiveTransactions": {
-      "type": "hasMany",
-      "model": "Transaction",
-      "foreignKey": "destinationAccountID"
+        "type": "hasMany",
+        "model": "Transaction",
+        "foreignKey": "destinationAccountID"
     },
     "transactions": {
-      "type": "hasMany",
-      "model": "Transaction",
-      "foreignKey": "destinationAccountID"
-    },
-    "currency": {
-      "type": "hasOne",
-      "model": "Currency",
-      "foreignKey": ""
+        "type": "hasMany",
+        "model": "Transaction",
+        "foreignKey": "destinationAccountID"
     }
   },
   "acls": [],

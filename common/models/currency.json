@@ -16,12 +16,14 @@
     }
   },
   "validations": [],
-  "relations": {
-      "accounts": {
-          "type": "hasMany",
-          "model": "Account",
-          "foreignKey": "currencyID"
-      }},
-  "acls": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
   "methods": []
 }

@@ -14,6 +14,10 @@
       "type": "string",
       "required": true
     },
+    "accountType": {
+      "type": "string",
+      "required": true
+    },
     "balance": {
       "type": "number",
       "required": true
@@ -27,8 +31,8 @@
       "required": true
     },
     "currencyID": {
-        "type": "number",
-        "required": true
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],
@@ -39,26 +43,40 @@
       "foreignKey": "currencyID"
     },
     "user": {
-        "type": "belongsTo",
-        "model": "LastFlagUser",
-        "foreignKey": "userID"
+      "type": "belongsTo",
+      "model": "lastFlagUser",
+      "foreignKey": "userID"
     },
     "sendTransactions": {
-        "type": "hasMany",
-        "model": "Transaction",
-        "foreignKey": "sourceAccountID"
+      "type": "hasMany",
+      "model": "Transaction",
+      "foreignKey": "sourceAccountID"
     },
     "receiveTransactions": {
-        "type": "hasMany",
-        "model": "Transaction",
-        "foreignKey": "destinationAccountID"
+      "type": "hasMany",
+      "model": "Transaction",
+      "foreignKey": "destinationAccountID"
     },
     "transactions": {
-        "type": "hasMany",
-        "model": "Transaction",
-        "foreignKey": "destinationAccountID"
+      "type": "hasMany",
+      "model": "Transaction",
+      "foreignKey": "destinationAccountID"
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "find"
+    }
+  ],
   "methods": []
 }

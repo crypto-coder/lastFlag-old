@@ -6,17 +6,6 @@
       "type": "number",
       "required": true
     },
-    "sourceAccount": {
-      "type": "Account",
-      "required": true
-    },
-    "destination": {
-      "type": "string"
-    },
-    "destinationAccount": {
-      "type": "Account",
-      "required": true
-    },
     "creationDate": {
       "type": "date",
       "required": true
@@ -24,6 +13,13 @@
   },
   "validations": [],
   "relations": {},
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
   "methods": []
 }

@@ -11,9 +11,21 @@ function LoginController($scope, $state, LastFlagUser, AppAuth){
                 function(accessToken){
                     console.log('SUCCESS - Login - Access Token = ' + accessToken.id);
                     AppAuth.accessToken = accessToken.id;
-                    AppAuth.ensureHasCurrentUser(LastFlagUser);
 
-                    $state.go('summary');
+                    AppAuth.currentUser = LastFlagUser.findOne(
+                        {id: accessToken.userId, filter: {include: "accounts"}},
+                        function(retrievedUser) {
+                            console.log('Success retrieving the accounts');
+
+                            //AppAuth.ensureHasCurrentUser(LastFlagUser);
+
+                            $state.go('summary');
+                        },
+                        function(err) {
+                            console.log('Failed to retrieve the accounts');
+                        });
+
+
                 },
                 function(err){
                     console.log('ERROR - Login Failure');
@@ -52,7 +64,16 @@ function RegistrationController($scope, $state, AppAuth, AssetService, Currency,
                                             console.log('SUCCESS - Login - Access Token = ' + accessToken.id);
                                             AppAuth.accessToken = accessToken.id;
 
-                                            $state.go('summary');
+                                            AppAuth.currentUser = LastFlagUser.findOne(
+                                                {id: accessToken.userId, filter: {include: "accounts"}},
+                                                function(retrievedUser) {
+                                                    console.log('Success retrieving the accounts');
+                                                    $state.go('summary');
+                                                },
+                                                function(err) {
+                                                    console.log('Failed to retrieve the accounts');
+                                                });
+
                                         },
                                         function(err){
                                             console.log('ERROR - Login Failure');
@@ -86,26 +107,18 @@ function SummaryController($scope, $state, LastFlagUser, AppAuth, Account){
 
         $state.go('home');
     };
-/*
-    $scope.createdAssets = [{ 'name':'test coin', 'balance': '-100,000' },
-                            { 'name':'test coin2', 'balance': '-50,000' }];
-    $scope.receivedAssets = [{ 'name':'test coin', 'balance': '100,000' },
-                             { 'name':'test coin2', 'balance': '11,000' }];
-*/
 
 
-    //TODO: Need to use the actual account classifiers instead of using balances to determine account type
 
-    Account.find(
-        {where: {userID: AppAuth.currentUser.id}},
-        function(accounts){
-            $scope.receivedAssets = accounts;
-        },
-        function(err){
-            console.log('error occurred when retrieving accounts for the current user');
-            return;
-        });
-
+    $scope.createdAssets = [];
+    $scope.receivedAssets = [];
+    for(var i = 0; i < AppAuth.currentUser.accounts.length; i++){
+        if(AppAuth.currentUser.accounts[i].accountType == 'I'){
+            $scope.createdAssets[$scope.createdAssets.length] = AppAuth.currentUser.accounts[i];
+        }else{
+            $scope.receivedAssets[$scope.receivedAssets.length] = AppAuth.currentUser.accounts[i];
+        }
+    }
 
 }
 

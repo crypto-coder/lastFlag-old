@@ -21,6 +21,7 @@ module.exports = function(lastFlagUser) {
        var newAccountSettings = { "otNymID": newNymID,
                                   "otAccountID": newAccountID,
                                   "name": newAccountName,
+                                  "accountType": "D",
                                   "balance": "0",
                                   "balanceDate": (new Date()).toString(),
                                   "userID": newlyCreatedLastFlagUser.id,

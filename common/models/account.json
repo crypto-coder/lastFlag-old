@@ -4,11 +4,11 @@
   "properties": {
     "otNymID": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "otAccountID": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "name": {
       "type": "string",
@@ -76,6 +76,13 @@
       "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "find"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "create"
     }
   ],
   "methods": []

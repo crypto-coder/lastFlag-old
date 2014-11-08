@@ -1,7 +1,7 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 
-//var otapi = require('../node_modules/node-otapi/node_otapi');
+var otapi = require('../node_modules/node-otapi/node_otapi');
 
 var app = module.exports = loopback();
 
@@ -47,8 +47,8 @@ app.start = function() {
   return app.listen(function() {
 
       //Start the OTAPI indicating the default serverID to use and wallet password
-      //otapi.startOTAPI('ya1AQQmaWnuntmDnoOjCmKpPXhmGuVAfkPwrgSc3nlf', 'password');
-      //otapi.mainServerID = 'y0ca6JVtYSZuj1etoABAsaNJsU2Kb35AjeQZyZ0YCCF';
+      otapi.startOTAPI('ya1AQQmaWnuntmDnoOjCmKpPXhmGuVAfkPwrgSc3nlf', 'password');
+      otapi.mainServerID = 'y0ca6JVtYSZuj1etoABAsaNJsU2Kb35AjeQZyZ0YCCF';
 
       app.emit('started');
     console.log('Web server listening at: %s', app.get('url'));
@@ -67,11 +67,11 @@ if (require.main === module) {
 //This may need to be more closely bound to the start/stop of the web server
 process.on('exit', function(code) {
     console.log('###### EXITING ######');
-    //otapi.stopOTAPI();
+    otapi.stopOTAPI();
 });
 process.on('SIGUSR2', function(code) {
     console.log('###### CAUGHT SIGUSR2 ######');
-    //otapi.stopOTAPI();
+    otapi.stopOTAPI();
 });
 
 /*

@@ -1,7 +1,12 @@
 {
   "name": "lastFlagUser",
   "base": "User",
-  "properties": {},
+  "properties": {
+    "otNymID": {
+      "type": "string",
+      "required": false
+    }
+  },
   "validations": [],
   "relations": {
     "accounts": {

@@ -1,0 +1,20 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <button class="button button-clear button-icon icon ion-arrow-left-c" ng-click="closeAllModals()">Back</button>
+        <h1 class="title">New Account</h1>
+        <button class="button button-clear button-positive" ng-click="saveAssetAccount()">Save</button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list list-inset">
+            <label class="item item-input">
+                <input type="text" placeholder="Account Name" ng-model="newAccountDetails.name">
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Currency
+                </div>
+                <select ng-model="newAccountDetails.currencyID" ng-options="currency.id as currency.name for currency in currencies"></select>
+            </label>
+        </div>
+    </ion-content>
+</ion-modal-view>

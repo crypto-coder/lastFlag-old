@@ -9,10 +9,25 @@
     "creationDate": {
       "type": "date",
       "required": true
+    },
+    "memo": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "fromAccount": {
+      "type": "belongsTo",
+      "model": "Account",
+      "foreignKey": "sourceAccountID"
+    },
+    "toAccount": {
+      "type": "belongsTo",
+      "model": "Account",
+      "foreignKey": "destinationAccountID"
+    }
+  },
   "acls": [
     {
       "accessType": "*",

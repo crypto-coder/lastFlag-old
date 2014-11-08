@@ -10,6 +10,7 @@ angular.module('lastFlagApp.services', ['lbServices'])
     .factory('AppAuth', function() {
         return {
             currentUser: null,
+            currentUserID: 0,
 
             //TODO: figure out how to do this properly
             accessToken: null,
@@ -17,7 +18,22 @@ angular.module('lastFlagApp.services', ['lbServices'])
 
             clearCredentials: function(){
                 this.currentUser = null;
+                this.currentUserID = 0;
                 this.accessToken = null;
+            },
+
+            reloadCurrentUser: function(LastFlagUser, next){
+                this.currentUser = LastFlagUser.findOne(
+                    {filter: {
+                        where: {id: this.currenUserID},
+                        include: {"accounts": ["currency", {"transactions": ["fromAccount", "toAccount"]}]}
+                    }},
+                    function(retrievedUser) {
+                        if(next){ next(); }
+                    },
+                    function(err) {
+                        console.log('Failed to reload the current user');
+                    });
             },
 
             // Note: we can't make the User a dependency of AppAuth
@@ -25,11 +41,12 @@ angular.module('lastFlagApp.services', ['lbServices'])
             // AppAuth <- $http <- $resource <- LoopBackResource <- User <- AppAuth
             ensureHasCurrentUser: function(LastFlagUser) {
                 if (this.currentUser) {
+                    this.currentUserID = this.currentUser.id;
                     console.log('Using cached current user.');
                 } else {
                     console.log('Fetching current user from the server.');
                     this.currentUser = LastFlagUser.getCurrent(function() {
-                        // success
+                       AppAuth.currentUserID = AppAuth.currentUser.id;
                     }, function(response) {
                         console.log('LastFlagUser.getCurrent() err', arguments);
                     });

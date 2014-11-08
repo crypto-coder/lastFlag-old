@@ -33,7 +33,11 @@
 
 </head>
 <body>
-    <ion-nav-bar class="bar-positive" align-title="center"></ion-nav-bar>
+    <ion-nav-bar class="bar-positive" align-title="center">
+        <ion-nav-back-button class="button-clear"><!-- provides back button only where needed -->
+            &nbsp;<i class="ion-arrow-left-c"></i> Back <!-- back button with left arrow -->
+        </ion-nav-back-button>
+    </ion-nav-bar>
     <ion-nav-view animation="slide-left-right"></ion-nav-view>
 </body>
 </html>

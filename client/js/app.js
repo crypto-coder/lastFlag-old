@@ -17,7 +17,8 @@ config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($state
         .state('home', { url: '/', templateUrl: 'partials/home.html', controller: HomeController})
         .state('login', { url: '/login', templateUrl: 'partials/login.html', controller: LoginController })
         .state('register', { url: '/register', templateUrl: 'partials/register.html', controller: RegistrationController })
-        .state('summary', { url: '/summary', templateUrl: 'partials/summary.html', controller: SummaryController });
+        .state('accounts', { url: '/accounts', templateUrl: 'partials/accounts.html', controller: AccountsSummaryController })
+        .state('accountDetail', { url: '/accounts/{id:[0-9]{1,8}}', templateUrl: 'partials/detail.html', controller: AccountDetailController });
 
     $urlRouterProvider.otherwise('/');
 

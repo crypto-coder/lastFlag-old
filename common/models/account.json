@@ -56,11 +56,6 @@
       "type": "hasMany",
       "model": "Transaction",
       "foreignKey": "destinationAccountID"
-    },
-    "transactions": {
-      "type": "hasMany",
-      "model": "Transaction",
-      "foreignKey": "destinationAccountID"
     }
   },
   "acls": [

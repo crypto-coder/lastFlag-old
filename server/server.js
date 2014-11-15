@@ -46,12 +46,13 @@ app.start = function() {
   // start the web server
   return app.listen(function() {
 
-      //Start the OTAPI indicating the default serverID to use and wallet password
-      otapi.startOTAPI('ya1AQQmaWnuntmDnoOjCmKpPXhmGuVAfkPwrgSc3nlf', 'password');
+      //Start the OTAPI indicating the wallet password and default server / user ids
+      otapi.startOTAPI('password');
       otapi.mainServerID = 'y0ca6JVtYSZuj1etoABAsaNJsU2Kb35AjeQZyZ0YCCF';
+      otapi.mainUserID = 'ya1AQQmaWnuntmDnoOjCmKpPXhmGuVAfkPwrgSc3nlf';
 
       app.emit('started');
-    console.log('Web server listening at: %s', app.get('url'));
+      console.log('Web server listening at: %s', app.get('url'));
   });
 };
 

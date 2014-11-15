@@ -1,10 +1,6 @@
-<ion-nav-bar class="bar-positive" align-title="center"></ion-nav-bar>
-<ion-view title="Accounts">
-    <ion-nav-buttons side="right">
-        <button class="button icon ion-log-out" ng-show="hasAccessToken" ng-click="logout()"></button>
-    </ion-nav-buttons>
+<ion-view title="Accounts" right-buttons="mainNavRightButtons" hide-back-button="true">
     <ion-content>
-        <div class="list card" ng-show="createdAssets">
+        <div class="list card lastFlagView">
             <div class="item item-divider" style="line-height: 42px;">
                 <span style="float:left;">Assets you created</span>
                 <button class="button button-clear" style="float:right;" ng-click="createNewAssetType()">

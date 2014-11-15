@@ -4,12 +4,16 @@
 // Declare app level module which depends on filters, and services
 angular.module('lastFlagApp', [
   'ionic',
+  'ng',
+  'ngSanitize',
+  'ngAnimate',
   'lastFlagApp.filters',
   'lastFlagApp.directives',
   'lastFlagApp.controllers',
   'lastFlagApp.services',
   'ui.router',
-  'lbServices'
+  'lbServices',
+  'ng-currency'
 ]).
 config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider){
 
@@ -47,14 +51,14 @@ config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($state
             return promise.then(success, error);
         };
     };
-    $httpProvider.responseInterceptors.push(interceptor);
+    $httpProvider.interceptors.push(interceptor);
     $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 
 }])
-.run(['$rootScope', '$state', '$stateParams', 'AppAuth', function($rootScope, $state, $stateParams, AppAuth ){
+.run(['$rootScope', '$state', '$stateParams', '$ionicLoading', '$document', 'AppAuth', function($rootScope, $state, $stateParams, $ionicLoading, $document, AppAuth ){
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
 

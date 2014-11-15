@@ -8,15 +8,18 @@
   "dependencies": {
     "angular": "1.2.x",
     "angular-mocks": "~1.2.x",
-    "jquery": "1.10.2",
-    "bootstrap": "~3.1.1",
     "angular-route": "~1.2.x",
-    "html5-boilerplate": "~4.3.0",
-    "ionic": "~0.9.27",
-    "angular-resource": "~1.2.25",
-    "angular-cookies": "~1.2.25"
+    "angular-resource": "~1.2.x",
+    "angular-cookies": "~1.2.x",
+    "angular-animate": "~1.2.x",
+    "angular-sanitize": "~1.2.x",
+    "bootstrap": "~3.1.1",
+    "jquery": "~2.1.1",
+    "ionic": "~0.9.27"
   },
   "resolutions": {
-    "angular": "1.2.25"
+    "angular": "1.2.x",
+    "angular-animate": "~1.2.x",
+    "angular-sanitize": "~1.2.x"
   }
 }

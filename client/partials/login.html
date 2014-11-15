@@ -1,11 +1,10 @@
-<ion-nav-bar class="bar-positive" align-title="center"></ion-nav-bar>
 <ion-view title="Login">
     <ion-content>
-        <div class="item item-divider assertive" ng-if="loginError">
-            An error has occurred.
-        </div>
-        <form class="item item-text-wrap" novalidate="novalidate">
-            <div class="card">
+        <div class="card lastFlagView">
+            <div class="item item-divider assertive" ng-if="loginError">
+                An error has occurred.
+            </div>
+            <form class="item item-text-wrap" novalidate="novalidate">
                 <div class="list list-inset">
                     <label class="item item-input">
                         <span class="input-label">Username:</span>
@@ -16,10 +15,10 @@
                         <input type="password" name="password" ng-model="credentials.password">
                     </label>
                 </div>
-            </div>
-            <button type="submit" class="button button-full button-positive" ng-click="login()">
-                Login
-            </button>
-        </form>
+                <button type="submit" class="button button-full button-positive" ng-click="login()">
+                    Login
+                </button>
+            </form>
+        </div>
     </ion-content>
 </ion-view>

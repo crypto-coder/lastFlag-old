@@ -13,6 +13,14 @@
     "totalCreated": {
       "type": "number",
       "required": true
+    },
+    "tla": {
+      "type": "string",
+      "required": false
+    },
+    "numberOfDecimals": {
+      "type": "number",
+      "required": false
     }
   },
   "validations": [],

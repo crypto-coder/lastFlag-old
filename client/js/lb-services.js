@@ -3948,6 +3948,18 @@ module.factory(
           url: urlBase + "/lastFlagUsers/:id/accounts/count",
           method: "GET",
         },
+
+        // INTERNAL. Use Transaction.fromAccount() instead.
+        "::get::Transaction::fromAccount": {
+          url: urlBase + "/Transactions/:id/fromAccount",
+          method: "GET",
+        },
+
+        // INTERNAL. Use Transaction.toAccount() instead.
+        "::get::Transaction::toAccount": {
+          url: urlBase + "/Transactions/:id/toAccount",
+          method: "GET",
+        },
       }
     );
 
@@ -4966,6 +4978,18 @@ module.factory(
       { 'id': '@id' },
       {
 
+        // INTERNAL. Use Transaction.fromAccount() instead.
+        "prototype$__get__fromAccount": {
+          url: urlBase + "/Transactions/:id/fromAccount",
+          method: "GET",
+        },
+
+        // INTERNAL. Use Transaction.toAccount() instead.
+        "prototype$__get__toAccount": {
+          url: urlBase + "/Transactions/:id/toAccount",
+          method: "GET",
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.Transaction#create
@@ -5561,6 +5585,78 @@ module.factory(
         R["removeById"] = R["deleteById"];
 
 
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Transaction#fromAccount
+         * @methodOf lbServices.Transaction
+         *
+         * @description
+         *
+         * Fetches belongsTo relation fromAccount
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
+        R.fromAccount = function() {
+          var TargetResource = $injector.get("Account");
+          var action = TargetResource["::get::Transaction::fromAccount"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Transaction#toAccount
+         * @methodOf lbServices.Transaction
+         *
+         * @description
+         *
+         * Fetches belongsTo relation toAccount
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `refresh` – `{boolean=}` - 
+         *
+         * @param {Function(Object, Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {Function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @return {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Account` object.)
+         * </em>
+         */
+        R.toAccount = function() {
+          var TargetResource = $injector.get("Account");
+          var action = TargetResource["::get::Transaction::toAccount"];
+          return action.apply(R, arguments);
+        };
 
     return R;
   }]);

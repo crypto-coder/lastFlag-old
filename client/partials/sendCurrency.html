@@ -1,17 +1,18 @@
-<ion-modal-view>
-    <ion-header-bar>
-        <button class="button button-icon icon ion-arrow-left-c" ng-click="closeAllModals()">Back</button>
-        <h1 class="title">New Currency</h1>
-        <button class="button button-clear button-positive" ng-click="closeAllModals()">Save</button>
-    </ion-header-bar>
-    <ion-content>
-        <div class="list list-inset">
-            <label class="item item-input">
-                <input type="text" placeholder="Currency Name">
-            </label>
-            <label class="item item-input">
-                <input type="text" placeholder="3-character abbreviation">
-            </label>
-        </div>
-    </ion-content>
-</ion-modal-view>
+<div class="list list-inset">
+    <label class="item item-input item-select">
+        <div class="input-label">To</div>
+        <select ng-model="newTransactionDetails.destinationAccountID" ng-options="oneAccount.id as oneAccount.name for oneAccount in allSendToAccounts"></select>
+    </label>
+    <label class="item item-input">
+        <input type="text" placeholder="Send Amount"
+               ng-model="newTransactionDetails.amount"
+               ng-currency
+                   min="1"
+                   max="currentAccount.balance"
+                   symbol="currentAccount.currency.tla"
+                   nod="currentAccount.currency.numberOfDecimals">
+    </label>
+    <label class="item item-input">
+        <input type="text" placeholder="Comment" ng-model="newTransactionDetails.memo">
+    </label>
+</div>

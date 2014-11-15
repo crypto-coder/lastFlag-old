@@ -1,30 +1,28 @@
-<ion-nav-bar class="bar-positive" align-title="center">
-    <ion-nav-back-button class="button-clear"><!-- provides back button only where needed -->
-        &nbsp;<i class="ion-arrow-left-c"></i> Back <!-- back button with left arrow -->
-    </ion-nav-back-button>
-</ion-nav-bar>
-<ion-view title="{{ currentAccount.name }}">
-    <ion-nav-buttons side="right">
-        <button class="button icon ion-log-out" ng-show="hasAccessToken" ng-click="logout()"></button>
-    </ion-nav-buttons>
+<ion-view title="{{ currentAccount.name }}" hide-back-button="false" right-buttons="mainNavRightButtons">
     <ion-content>
-        <div class="list card">
+        <div class="list card lastFlagView">
             <div class="item item-divider" style="line-height: 42px;">
-                <span style="float:left;">{{ currentAccount.name }}</span>
-                <button class="button button-clear" style="float:right;" ng-click="sendAsset()">
+                <span style="float:left;">{{ currentAccount.balance }} {{ currentAccount.currency.name }}</span>
+                <button class="button button-clear" style="float:right;" ng-click="showDeleteAccount()" ng-show="currentAccount.balance == 0 && currentAccount.accountType != 'I'">
+                    <i class="icon ion-trash-b" style=""></i>
+                </button>
+                <button class="button button-clear" style="float:right;" ng-click="showSendCurrency()" ng-show="currentAccount.balance != 0 || currentAccount.accountType == 'I'">
                     <i class="icon ion-forward" style=""></i>
                 </button>
             </div>
-            <a class="item item-icon-left" href="#" ng-repeat="transaction in currentAccount.transactions">
-                <div ng-show="transaction.amount < 0">
+            <a class="item item-icon-left" href="#" ng-repeat="transaction in allTransactions | orderBy: '-creationDate'">
+
+                <div ng-if="transaction.fromAccount">
                     <i class="icon ion-ios7-download"></i>
                     {{ transaction.fromAccount.name }}
-                    <span class="badge badge-assertive">{{ transaction.amount|currency }}</span>
+                    <p>{{ transaction.memo }}</p>
+                    <span class="badge badge-assertive">{{ transaction.amount }}</span>
                 </div>
-                <div ng-show="transaction.amount > 0">
-                    <i class="icon ion-ios7-download"></i>
-                    {{ transaction.fromAccount.name }}
-                    <span class="badge badge-assertive">{{ transaction.amount|currency }}</span>
+                <div ng-if="transaction.toAccount">
+                    <i class="icon ion-ios7-upload"></i>
+                    {{ transaction.toAccount.name }}
+                    <p>{{ transaction.memo }}</p>
+                    <span class="badge badge-assertive">{{ transaction.amount }}</span>
                 </div>
             </a>
         </div>

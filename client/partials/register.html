@@ -1,7 +1,6 @@
-<ion-nav-bar class="bar-positive" align-title="center"></ion-nav-bar>
 <ion-view title="Register">
     <ion-content>
-        <div class="card">
+        <div class="card lastFlagView">
             <div class="item item-divider assertive" ng-if="registerError">
                 An error has occurred.
             </div>
@@ -21,8 +20,7 @@
                     </label>
                     <label class="item item-input item-select">
                         <span class="input-label">Starting Asset:</span>
-                        <select ng-model="registration.startingAsset" name="startingAsset" ng-options="asset.name for asset in assets">
-                        </select>
+                        <select ng-model="registration.startingAsset" ng-options="currency.name for currency in currencies"></select>
                     </label>
                 </div>
                 <button type="submit" class="button button-full button-positive" ng-click="register()">

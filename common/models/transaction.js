@@ -21,8 +21,7 @@ module.exports = function(Transaction) {
                                 var toAccount = (accounts[0].id == toBeCreatedTransaction.destinationAccountID) ? accounts[0] : accounts[1];
 
                                 //Create a transaction in OT
-                                otapi.transferAssets(fromAccount.otNymID,
-                                                     fromAccount.otAccountID,
+                                otapi.transferAssets(fromAccount.otAccountID,
                                                      toAccount.otAccountID,
                                                      toBeCreatedTransaction.amount,
                                                      toBeCreatedTransaction.memo);

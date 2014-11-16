@@ -160,7 +160,7 @@ function AccountsSummaryController($scope, $state, $ionicPopup, LastFlagUser, Ac
         for(var i = 0; i < AppAuth.currentUser.accounts.length; i++){
             if(AppAuth.currentUser.accounts[i].accountType == 'I'){
                 $scope.createdAssets[$scope.createdAssets.length] = AppAuth.currentUser.accounts[i];
-            }else{
+            }else if(AppAuth.currentUser.accounts[i].accountType == 'D'){
                 $scope.receivedAssets[$scope.receivedAssets.length] = AppAuth.currentUser.accounts[i];
             }
         }
@@ -275,7 +275,8 @@ function AccountDetailController($scope, $state, $ionicPopup, LastFlagUser, Acco
             filter = {filter:{
                 where: {
                     currencyID: $scope.currentAccount.currencyID,
-                    id: { neq: $scope.currentAccount.id }
+                    id: { neq: $scope.currentAccount.id },
+                    accountType: { neq: 'R' }
                 }
             }};
         }
@@ -346,9 +347,14 @@ function AccountDetailController($scope, $state, $ionicPopup, LastFlagUser, Acco
         });
     };
     $scope.deleteAccount = function(){
-        console.log('Tried to delete an account');
-
-
+        Account.deleteById({id: $scope.currentAccount.id},
+            function(success, headers){
+                console.log('SUCCESS - Deleted the account');
+                AppAuth.reloadCurrentUser(LastFlagUser, function(){$state.go('accounts');});
+            },
+            function(err) {
+                console.log('ERROR - Failed to delete the account');
+            });
     };
 
     if(AppAuth.currentUser.accounts){

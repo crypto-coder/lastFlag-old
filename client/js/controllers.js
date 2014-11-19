@@ -101,6 +101,8 @@ function AccountsSummaryController($scope, $state, $ionicPopup, LastFlagUser, Ac
 
     $scope.createdAssets = [];
     $scope.receivedAssets = [];
+    $scope.newAccountDetails = null;
+    $scope.newAssetTypeDetails = null;
 
     //TODO: Refactor to not require a Currency parameter...
     $scope.currencies = CurrencyService.getAllCurrencies(Currency);
@@ -126,8 +128,18 @@ function AccountsSummaryController($scope, $state, $ionicPopup, LastFlagUser, Ac
                                     "userID": AppAuth.currentUserID,
                                     "currencyID": "" };
     };
+    $scope.resetNewAssetTypeDetails = function() {
+        $scope.newAssetTypeDetails = {
+            "otAssetID": "",
+            "name": "",
+            "totalCreated": "0",
+            "tla": "",
+            "numberOfDecimals": "0" };
+    };
 
-    $scope.createNewAssetType = function(){
+    $scope.showCreateNewAssetType = function(){
+        $scope.resetNewAssetTypeDetails();
+
         $ionicPopup.show({
             templateUrl: 'partials/createCurrency.html',
             title: 'Create Currency',
@@ -135,9 +147,10 @@ function AccountsSummaryController($scope, $state, $ionicPopup, LastFlagUser, Ac
             buttons: [
                 { text: 'Cancel', onTap: function(e) { return true; } },
                 {
-                    text: '<b>Save</b>',
+                    text: '<b>Create</b>',
                     type: 'button-positive',
                     onTap: function(e) {
+                        $scope.createNewAssetType();
                         return true;
                     }
                 }
@@ -149,6 +162,18 @@ function AccountsSummaryController($scope, $state, $ionicPopup, LastFlagUser, Ac
         }, function(msg) {
             console.log('message:', msg);
         });
+    };
+
+    $scope.createNewAssetType = function(){
+        Currency.create($scope.newAssetTypeDetails,
+            function(newCurrency){
+                console.log('SUCCESS - Created an Currency - currencyID = ' + newCurrency.id);
+                AppAuth.reloadCurrentUser(LastFlagUser, $scope.loadAssetAccounts);
+            },
+            function(err){
+                console.log('ERROR - Create Currency Failure');
+                for(var i in err.data.error){console.log(i+' = '+err.data.error[i]);}
+            });
     };
 
 
@@ -165,7 +190,7 @@ function AccountsSummaryController($scope, $state, $ionicPopup, LastFlagUser, Ac
             }
         }
     };
-    $scope.createAssetAccount = function(){
+    $scope.showCreateAssetAccount = function(){
         $scope.resetNewAccountDetails();
 
         $ionicPopup.show({
@@ -178,7 +203,7 @@ function AccountsSummaryController($scope, $state, $ionicPopup, LastFlagUser, Ac
                     text: '<b>Save</b>',
                     type: 'button-positive',
                     onTap: function(e) {
-                        $scope.saveAssetAccount();
+                        $scope.createAssetAccount();
                         return true;
                     }
                 }
@@ -191,7 +216,7 @@ function AccountsSummaryController($scope, $state, $ionicPopup, LastFlagUser, Ac
             console.log('message:', msg);
         });
     };
-    $scope.saveAssetAccount = function(){
+    $scope.createAssetAccount = function(){
         Account.create($scope.newAccountDetails,
             function(account){
                 console.log('SUCCESS - Created an Account - AccountID = ' + account.id);

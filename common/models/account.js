@@ -7,11 +7,8 @@ module.exports = function(Account) {
     Account.beforeCreate = function(next, toBeCreatedAccount) {
         var app = require('../../server/server');
         var otapi = require('../../node_modules/node-otapi/node_otapi');
+        var currency = app.models.Currency;
 
-        if(toBeCreatedAccount.otAccountID == ""){
-            var newAccountID = otapi.createAccount(toBeCreatedAccount.name, toBeCreatedAccount.otNymID, Account.defaultAssetID);
-            toBeCreatedAccount.otAccountID = newAccountID;
-        }
 
         if(toBeCreatedAccount.accountType == ""){
             toBeCreatedAccount.accountType = "D"; //Deposit account
@@ -22,9 +19,24 @@ module.exports = function(Account) {
             toBeCreatedAccount.balance = "0";
         }
 
-        console.log('SUCCESS - Finished creating a new Account');
+        if(toBeCreatedAccount.otAccountID == "" && toBeCreatedAccount.currencyID > 0){
+            currency.findOne(
+                {where: {id: toBeCreatedAccount.currencyID}},
+                function(err, selectedCurrency) {
+                    if (err) {
+                        console.log('ERROR - Could not find Currency [REMOVED] Account while attempting to delete an Account');
+                        return;
+                    }
 
-        next();
+                    var newAccountID = otapi.createAccount(toBeCreatedAccount.name, toBeCreatedAccount.otNymID, selectedCurrency.otAssetID);
+                    toBeCreatedAccount.otAccountID = newAccountID;
+                    console.log('SUCCESS - Finished creating a new Account');
+
+                    next();
+                });
+        }else{
+            next();
+        }
     };
 
 

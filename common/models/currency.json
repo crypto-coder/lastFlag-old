@@ -38,6 +38,13 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "find"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "create"
     }
   ],
   "methods": []

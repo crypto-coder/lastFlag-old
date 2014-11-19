@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<digitalAssetContract version="2.0">
+
+    <entity shortname="PUREMoneySystems.com"
+            longname="PUREMoneySystems.com"
+            email="puremoneysystems@gmail.com"
+            serverURL="https://localhost/vers/1/"/>
+
+    <issue company="PUREMoneySystems.com"
+           email="puremoneysystems@gmail.com"
+           contractUrl="https://localhost/contracts/"
+           type="currency"/>
+
+    <currency name="" tla="" symbol="." type="decimal" factor="1" decimal_power="0" fraction=""/>
+
+    <!-- CONDITIONS -->
+
+    <condition name="backing">
+        No implicit or explicit backing for this currency
+    </condition>
+
+    <condition name="audit">
+        No audits performed on this currency's use or distribution
+    </condition>
+
+    <condition name="purchase">
+        This currency is given to others as gifts.  No initial purchase is required to recieve this currency.
+    </condition>
+
+    <condition name="redemption">
+        PUREMoneySystems.com, nor anyone else using the LastFlag system, will redeem this currency for another asset.  This is a test only.
+    </condition>
+
+    <condition name="rate">
+        Issuance and redemption of this currency will be performed at no charge
+    </condition>
+
+    <condition name="buyback">
+        The Issuer reserves the right to buy back all outstanding currency, thereby terminating the use of this instrument.
+    </condition>
+
+    <condition name="liability">
+        PUREMoneySystems will provide no liability for the use, distribution, or transmission of this currency.  This is a test and is not intended to represent or perform like a real-world currency
+    </condition>
+
+    <condition name="mint">
+        PUREMoneySystems serves as the mint for this currency, when directed to issue or withdraw some currency to an account by the Issuer
+    </condition>
+
+    <condition name="privacy">
+        PUREMoneySystems uses Open Transactions to manage all transactions with this currency.  Open Transactions does not record transactions, but the LastFlag application does.  Security at multiple layers is considered, but this should not be relied on.  As a test, assume all data is public, all the time.
+    </condition>
+
+</digitalAssetContract>

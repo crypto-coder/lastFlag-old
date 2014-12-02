@@ -1,0 +1,32 @@
+<ion-view title="Accounts" right-buttons="mainNavRightButtons" hide-back-button="true">
+    <ion-content>
+        <div class="list card lastFlagView">
+            <div class="item item-divider" style="line-height: 42px;">
+                <span style="float:left;">Assets you created</span>
+                <button class="button button-clear" style="float:right;" ng-click="showCreateNewAssetType()">
+                    <i class="icon ion-plus-circled" style=""></i>
+                </button>
+            </div>
+            <a ui-sref="accountDetail({ id: asset.id })" class="item item-icon-left" ng-repeat="asset in createdAssets">
+                <i class="icon ion-flag"></i>
+                <h2>{{ asset.name }}</h2>
+                <p style="float:left;">{{ asset.currency.name }}</p>
+                <span class="item-note">{{ asset.balance }}</span>
+            </a>
+        </div>
+        <div class="list card">
+            <div class="item item-divider" style="line-height: 42px;">
+                <span style="float:left;">Assets you received</span>
+                <button class="button button-clear" style="float:right;" ng-click="showCreateAssetAccount()">
+                    <i class="icon ion-plus-circled" style=""></i>
+                </button>
+            </div>
+            <a ui-sref="accountDetail({ id: asset.id })" class="item item-icon-left" ng-repeat="asset in receivedAssets" ng-show="receivedAssets">
+                <i class="icon ion-archive"></i>
+                <h2>{{ asset.name }}</h2>
+                <p style="float:left;">{{ asset.currency.name }}</p>
+                <span class="item-note">{{ asset.balance }}</span>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

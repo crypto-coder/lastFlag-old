@@ -1,0 +1,29 @@
+{
+  "name": "Wallet",
+  "base": "PersistedModel",
+  "properties": {
+    "otWalletID": {
+      "type": "string",
+      "required": true
+    },
+    "ownerUsername": {
+      "type": "string",
+      "required": true
+    },
+    "maxAccounts": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": []
+}

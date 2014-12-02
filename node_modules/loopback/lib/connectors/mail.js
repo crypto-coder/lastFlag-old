@@ -2,10 +2,10 @@
  * Dependencies.
  */
 
-var mailer = require('nodemailer')
-  , assert = require('assert')
-  , debug = require('debug')('loopback:connector:mail')
-  , loopback = require('../loopback')
+var mailer = require('nodemailer');
+var assert = require('assert');
+var debug = require('debug')('loopback:connector:mail');
+var loopback = require('../loopback');
 
 /**
  * Export the MailConnector class.
@@ -24,19 +24,19 @@ function MailConnector(settings) {
   var transports = settings.transports;
 
   //if transports is not in settings object AND settings.transport exists
-  if(!transports && settings.transport){
+  if (!transports && settings.transport) {
     //then wrap single transport in an array and assign to transports
     transports = [settings.transport];
   }
 
-  if(!transports){
+  if (!transports) {
     transports = [];
   }
 
   this.transportsIndex = {};
   this.transports = [];
 
-  if(loopback.isServer) {
+  if (loopback.isServer) {
     transports.forEach(this.setupTransport.bind(this));
   }
 }
@@ -44,10 +44,9 @@ function MailConnector(settings) {
 MailConnector.initialize = function(dataSource, callback) {
   dataSource.connector = new MailConnector(dataSource.settings);
   callback();
-}
+};
 
 MailConnector.prototype.DataAccessObject = Mailer;
-
 
 /**
  * Add a transport to the available transports. See https://github.com/andris9/Nodemailer#setting-up-a-transport-method.
@@ -86,7 +85,7 @@ MailConnector.prototype.setupTransport = function(setting) {
 
   connector.transportsIndex[setting.type] = transport;
   connector.transports.push(transport);
-}
+};
 
 function Mailer() {
 
@@ -101,7 +100,7 @@ function Mailer() {
 
 MailConnector.prototype.transportForName = function(name) {
   return this.transportsIndex[name];
-}
+};
 
 /**
  * Get the default transport.
@@ -111,7 +110,7 @@ MailConnector.prototype.transportForName = function(name) {
 
 MailConnector.prototype.defaultTransport = function() {
   return this.transports[0] || this.stubTransport;
-}
+};
 
 /**
  * Send an email with the given `options`.
@@ -132,7 +131,7 @@ MailConnector.prototype.defaultTransport = function() {
  * @param {Function} callback Called after the e-mail is sent or the sending failed
  */
 
-Mailer.send = function (options, fn) {
+Mailer.send = function(options, fn) {
   var dataSource = this.dataSource;
   var settings = dataSource && dataSource.settings;
   var connector = dataSource.connector;
@@ -140,13 +139,13 @@ Mailer.send = function (options, fn) {
 
   var transport = connector.transportForName(options.transport);
 
-  if(!transport) {
+  if (!transport) {
     transport = connector.defaultTransport();
   }
 
-  if(debug.enabled || settings && settings.debug) {
+  if (debug.enabled || settings && settings.debug) {
     console.log('Sending Mail:');
-    if(options.transport) {
+    if (options.transport) {
       console.log('\t TRANSPORT:', options.transport);
     }
     console.log('\t TO:', options.to);
@@ -156,25 +155,25 @@ Mailer.send = function (options, fn) {
     console.log('\t HTML:', options.html);
   }
 
-  if(transport) {
+  if (transport) {
     assert(transport.sendMail, 'You must supply an Email.settings.transports containing a valid transport');
     transport.sendMail(options, fn);
   } else {
-    console.warn('Warning: No email transport specified for sending email.'
-      + ' Setup a transport to send mail messages.');
+    console.warn('Warning: No email transport specified for sending email.' +
+      ' Setup a transport to send mail messages.');
     process.nextTick(function() {
       fn(null, options);
     });
   }
-}
+};
 
 /**
  * Send an email instance using `modelInstance.send()`.
  */
 
-Mailer.prototype.send = function (fn) {
+Mailer.prototype.send = function(fn) {
   this.constructor.send(this, fn);
-}
+};
 
 /**
  * Access the node mailer object.

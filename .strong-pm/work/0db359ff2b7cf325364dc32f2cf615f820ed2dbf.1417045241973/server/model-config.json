@@ -1,0 +1,48 @@
+{
+  "_meta": {
+    "sources": [
+      "../common/models",
+      "./models"
+    ]
+  },
+  "lastFlagUser": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "AccessToken": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "ACL": {
+    "dataSource": "localMYSQL",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "localMYSQL",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "localMYSQL",
+    "public": false
+  },
+  "Server": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "Wallet": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "Currency": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "Account": {
+    "dataSource": "localMYSQL",
+    "public": true
+  },
+  "Transaction": {
+    "dataSource": "localMYSQL",
+    "public": true
+  }
+}

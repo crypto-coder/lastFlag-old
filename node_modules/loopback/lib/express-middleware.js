@@ -1,4 +1,3 @@
-var express = require('express');
 var path = require('path');
 
 var middlewares = exports;
@@ -12,7 +11,7 @@ function safeRequire(m) {
 }
 
 function createMiddlewareNotInstalled(memberName, moduleName) {
-  return function () {
+  return function() {
     var msg = 'The middleware loopback.' + memberName + ' is not installed.\n' +
       'Run `npm install --save ' + moduleName + '` to fix the problem.';
     throw new Error(msg);
@@ -20,20 +19,20 @@ function createMiddlewareNotInstalled(memberName, moduleName) {
 }
 
 var middlewareModules = {
-  "compress": "compression",
-  "timeout": "connect-timeout",
-  "cookieParser": "cookie-parser",
-  "cookieSession": "cookie-session",
-  "csrf": "csurf",
-  "errorHandler": "errorhandler",
-  "session": "express-session",
-  "methodOverride": "method-override",
-  "logger": "morgan",
-  "responseTime": "response-time",
-  "favicon": "serve-favicon",
-  "directory": "serve-index",
-  // "static": "serve-static",
-  "vhost": "vhost"
+  'compress': 'compression',
+  'timeout': 'connect-timeout',
+  'cookieParser': 'cookie-parser',
+  'cookieSession': 'cookie-session',
+  'csrf': 'csurf',
+  'errorHandler': 'errorhandler',
+  'session': 'express-session',
+  'methodOverride': 'method-override',
+  'logger': 'morgan',
+  'responseTime': 'response-time',
+  'favicon': 'serve-favicon',
+  'directory': 'serve-index',
+  // 'static': 'serve-static',
+  'vhost': 'vhost'
 };
 
 middlewares.bodyParser = safeRequire('body-parser');
@@ -47,7 +46,7 @@ for (var m in middlewareModules) {
 
 // serve-favicon requires a path
 var favicon = middlewares.favicon;
-middlewares.favicon = function (icon, options) {
+middlewares.favicon = function(icon, options) {
   icon = icon || path.join(__dirname, '../favicon.ico');
   return favicon(icon, options);
 };

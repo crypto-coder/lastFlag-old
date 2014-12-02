@@ -7,13 +7,13 @@ module.exports = Connector;
 /**
  * Module dependencies.
  */
- 
-var EventEmitter = require('events').EventEmitter
-  , debug = require('debug')('connector')
-  , util = require('util')
-  , inherits = util.inherits
-  , assert = require('assert');
-  
+
+var EventEmitter = require('events').EventEmitter;
+var debug = require('debug')('connector');
+var util = require('util');
+var inherits = util.inherits;
+var assert = require('assert');
+
 /**
  * Create a new `Connector` with the given `options`.
  *
@@ -24,7 +24,7 @@ var EventEmitter = require('events').EventEmitter
 function Connector(options) {
   EventEmitter.apply(this, arguments);
   this.options = options;
-  
+
   debug('created with options', options);
 }
 
@@ -38,17 +38,17 @@ inherits(Connector, EventEmitter);
  * Create an connector instance from a JugglingDB adapter.
  */
 
-Connector._createJDBAdapter = function (jdbModule) {
+Connector._createJDBAdapter = function(jdbModule) {
   var fauxSchema = {};
-  jdbModule.initialize(fauxSchema, function () {
+  jdbModule.initialize(fauxSchema, function() {
     // connected
   });
-}
+};
 
 /*!
  * Add default crud operations from a JugglingDB adapter.
  */
 
-Connector.prototype._addCrudOperationsFromJDBAdapter = function (connector) {
-  
-}
+Connector.prototype._addCrudOperationsFromJDBAdapter = function(connector) {
+
+};

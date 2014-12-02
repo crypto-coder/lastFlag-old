@@ -1,0 +1,30 @@
+<ion-view title="{{ currentAccount.name }}" hide-back-button="false" right-buttons="mainNavRightButtons">
+    <ion-content>
+        <div class="list card lastFlagView">
+            <div class="item item-divider" style="line-height: 42px;">
+                <span style="float:left;">{{ currentAccount.balance }} {{ currentAccount.currency.name }}</span>
+                <button class="button button-clear" style="float:right;" ng-click="showDeleteAccount()" ng-show="currentAccount.balance == 0 && currentAccount.accountType != 'I'">
+                    <i class="icon ion-trash-b" style=""></i>
+                </button>
+                <button class="button button-clear" style="float:right;" ng-click="showSendCurrency()" ng-show="currentAccount.balance != 0 || currentAccount.accountType == 'I'">
+                    <i class="icon ion-forward" style=""></i>
+                </button>
+            </div>
+            <a class="item item-icon-left" href="#" ng-repeat="transaction in allTransactions | orderBy: '-creationDate'">
+
+                <div ng-if="transaction.fromAccount">
+                    <i class="icon ion-ios7-download"></i>
+                    {{ transaction.fromAccount.name }}
+                    <p>{{ transaction.memo }}</p>
+                    <span class="badge badge-assertive">{{ transaction.amount }}</span>
+                </div>
+                <div ng-if="transaction.toAccount">
+                    <i class="icon ion-ios7-upload"></i>
+                    {{ transaction.toAccount.name }}
+                    <p>{{ transaction.memo }}</p>
+                    <span class="badge badge-assertive">{{ transaction.amount }}</span>
+                </div>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

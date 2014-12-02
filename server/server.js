@@ -1,7 +1,7 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 
-var otapi = require('../node_modules/node-otapi/node_otapi');
+var otapi = require('otapi');
 
 var app = module.exports = loopback();
 

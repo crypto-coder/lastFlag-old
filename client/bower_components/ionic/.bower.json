@@ -1,7 +1,7 @@
 {
   "name": "ionic",
-  "version": "0.9.27",
-  "codename": "salamander",
+  "version": "1.0.0-beta.13",
+  "codename": "lanthanum-leopard",
   "homepage": "https://github.com/driftyco/ionic",
   "authors": [
     "Max Lynch <max@drifty.com>",
@@ -10,10 +10,10 @@
   ],
   "description": "Advanced HTML5 hybrid mobile app development framework.",
   "main": [
-    "release/css/ionic.css",
-    "release/fonts/*",
-    "release/js/ionic.js",
-    "release/js/ionic-angular.js"
+    "css/ionic.css",
+    "fonts/*",
+    "js/ionic.js",
+    "js/ionic-angular.js"
   ],
   "keywords": [
     "mobile",
@@ -28,38 +28,20 @@
   ],
   "license": "MIT",
   "private": false,
-  "ignore": [
-    "**/.*",
-    "CONTRIBUTING.md",
-    "Gruntfile.js",
-    "component.json",
-    "config",
-    "examples",
-    "package.json",
-    "release/js/angular",
-    "release/js/angular-ui",
-    "scripts",
-    "test",
-    "js/controllers",
-    "js/ext",
-    "js/utils",
-    "js/views",
-    "js/_license.js",
-    "js/ionic.js"
-  ],
   "dependencies": {
-    "angular": "1.2.12",
-    "angular-animate": "1.2.12",
-    "angular-sanitize": "1.2.12",
-    "angular-ui-router": "0.2.7"
+    "angular": "~1.2.17",
+    "angular-animate": "~1.2.17",
+    "angular-sanitize": "~1.2.17",
+    "angular-ui-router": "0.2.10",
+    "collide": "1.0.0-beta.3"
   },
-  "_release": "0.9.27",
+  "_release": "1.0.0-beta.13",
   "_resolution": {
     "type": "version",
-    "tag": "v0.9.27",
-    "commit": "da0c24672f322bf14232adb43c70f5593e85d0a6"
+    "tag": "v1.0.0-beta.13",
+    "commit": "3d4262339bb25138698d08127ad3f6785c766554"
   },
-  "_source": "git://github.com/driftyco/ionic.git",
-  "_target": "~0.9.27",
-  "_originalSource": "ionic"
+  "_source": "git://github.com/driftyco/ionic-bower.git",
+  "_target": "v1.0.0-beta.13",
+  "_originalSource": "driftyco/ionic-bower"
 }

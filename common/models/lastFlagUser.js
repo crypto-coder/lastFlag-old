@@ -40,7 +40,7 @@ module.exports = function(lastFlagUser) {
 
     lastFlagUser.beforeCreate = function(next, toBeCreatedLastFlagUser) {
         var app = require('../../server/server');
-        var otapi = require('../../node_modules/node-otapi/node_otapi');
+        var otapi = require('../../node_modules/otapi/build/Release/otapi');
 
         //Create a new Nym in Open Transactions to match the new User
         var newNymID = otapi.createNym(toBeCreatedLastFlagUser.username);

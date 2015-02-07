@@ -65,7 +65,7 @@ module.exports = function(Currency) {
     });
     Currency.beforeCreate = function(next, toBeCreatedCurrency){
         var app = require('../../server/server');
-        var otapi = require('../../node_modules/node-otapi/node_otapi');
+        var otapi = require('../../node_modules/otapi/build/Release/otapi');
         var xmldom = require('xmldom');
         var fs = require('fs');
         var path = require('path');
@@ -103,7 +103,7 @@ module.exports = function(Currency) {
 
     Currency.afterCreate = function(next) {
         var app = require('../../server/server');
-        var otapi = require('../../node_modules/node-otapi/node_otapi');
+        var otapi = require('../../node_modules/otapi/build/Release/otapi');
         var account = app.models.Account;
 
         //Issue the signed asset contract

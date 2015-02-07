@@ -4,7 +4,7 @@ module.exports = function(Transaction) {
 
     Transaction.beforeCreate = function(next, toBeCreatedTransaction) {
         var app = require('../../server/server');
-        var otapi = require('../../node_modules/node-otapi/node_otapi');
+        var otapi = require('../../node_modules/otapi/build/Release/otapi');
         var account = app.models.Account;
 
 

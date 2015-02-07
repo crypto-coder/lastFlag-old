@@ -47,8 +47,8 @@ app.start = function() {
   return app.listen(function() {
 
       //Start the OTAPI indicating the wallet password and default server / user ids
-      otapi.startOTAPI('AA11aa11');
-      otapi.mainServerID = 'xyzl2I9VFVJP7ujXqUfdyf4Eoj6tQl2sOKnXcs741TH';
+      otapi.startOTAPI('password');
+      otapi.mainServerID = 'y0ca6JVtYSZuj1etoABAsaNJsU2Kb35AjeQZyZ0YCCF';
       //otapi.mainUserID = 'ya1AQQmaWnuntmDnoOjCmKpPXhmGuVAfkPwrgSc3nlf';
 
       app.emit('started');

@@ -6,7 +6,7 @@ module.exports = function(Account) {
 
     Account.beforeCreate = function(next, toBeCreatedAccount) {
         var app = require('../../server/server');
-        var otapi = require('../../node_modules/node-otapi/node_otapi');
+        var otapi = require('../../node_modules/otapi/build/Release/otapi');
         var currency = app.models.Currency;
 
 
@@ -42,7 +42,7 @@ module.exports = function(Account) {
 
     Account.beforeDestroy = function(next, toBeDeletedAccount) {
         var app = require('../../server/server');
-        var otapi = require('../../node_modules/node-otapi/node_otapi');
+        var otapi = require('../../node_modules/otapi/build/Release/otapi');
         var transaction = app.models.Transaction;
 
         if(toBeDeletedAccount.otAccountID == ""){

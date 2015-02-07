@@ -15,6 +15,7 @@
     "angular-sanitize": "~1.2.x",
     "bootstrap": "~3.1.1",
     "jquery": "~2.1.1",
-    "ionic": "driftyco/ionic-bower#v1.0.0-beta.13"
+    "ionic": "driftyco/ionic-bower#v1.0.0-beta.13",
+    "ng-currency": "~0.7.10"
   }
 }

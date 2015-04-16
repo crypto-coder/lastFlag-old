@@ -6,7 +6,7 @@ This application is a mobile web client / server deployment.  The client uses Io
 
 ###Architecture
 
-![alt text](https://github.com/PUREMoneySystems/lastFlag/blob/master/PoC_deployment.jpg "Proof-of-Concept Deployment")
+![alt text](https://github.com/PUREMoneySystems/lastFlag-old/blob/master/PoC_deployment.jpg "Proof-of-Concept Deployment")
 
 
 ###Milestones
